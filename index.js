@@ -1,3 +1,17 @@
+let testData = [2, 8, 7, 10, 15];
+let testOptions = {
+  width: "80%",
+  height: "400px",
+  title: "Bar Chart Title",
+  titleFontSize: "2em",
+  titleColour: "black",
+  valuePosition: "middle",
+  barSpacing: "80%",
+  stacked: false,
+  barColor: "red",
+};
+let testElement = "#barChart";
+
 const createBarChart = (data, options, element) => {
   // add bars to xAxisContainer
   $(element).add(data.toString());
@@ -79,18 +93,8 @@ $("input[type=checkbox]").change(function () {
   }
 });
 
-let testData = [2, 8, 7, 10, 15];
-let testOptions = {
-  width: "80%",
-  height: "400px",
-  title: "Bar Chart Title",
-  titleFontSize: "2em",
-  titleColour: "black",
-  valuePosition: "middle",
-  barSpacing: "80%",
-  stacked: false,
-  barColor: "red",
-};
-let testElement = "#barChart";
+$(".addValueBtn").on("click", function () {
+  testData.push($("#addValue").val());
+});
 
 createBarChart(testData, testOptions, testElement);
