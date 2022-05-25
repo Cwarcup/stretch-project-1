@@ -1,17 +1,38 @@
-const drawBarChart = function (data, options, element) {
-  $(element).add("div").addClass("test").text(data);
-  console.log(options);
+// const domObjects = {
+//   title: ".title",
+//   chart: ".chart",
+// };
+
+// $(function () {
+//   // const buildChart = (chartName) => {
+//   //   $("body").append(`<div id=${chartName}barChart></div>`);
+//   //   $(`#${chartName}barChart`).append(
+//   //     `
+//   //       <div class="title">
+//   //         <div id="titleText" style="display: none">
+//   //           <p id="titleString"></p>
+//   //         </div>
+//   //       </div>
+//   //       `
+//   //   );
+//   // };
+//   // // buildChart("Test");
+// });
+
+const createBarChart = (data, options, element) => {
+  $(element).add(data.toString());
 };
-
-let options = {
-  key: "value",
+let testData = [5, 10, 15, 20];
+let testOptions = {
+  width: "80%",
+  height: "400px",
+  title: "Bar Chart Title",
+  titleFontSize: "2em",
+  titleColour: "black",
+  valuePosition: "middle",
+  barSpacing: "80%",
+  stacked: false,
 };
+let testElement = "#barChart";
 
-// drawBarChart([1, 2, 3, 4, 5], options, "#container-chart");
-
-$(".inputData").on("click", function () {
-  let label = $("#Label").val();
-  let val = $("#Value").val();
-  console.log(label);
-  console.log(val);
-});
+createBarChart(testData, testOptions, testElement);
