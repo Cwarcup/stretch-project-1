@@ -41,12 +41,12 @@ $(".changeBtn").on("click", function () {
 $("input[type=checkbox]").change(function () {
   if (this.checked) {
     $(".bar-label").attr("contenteditable", "true");
-    console.log("yes");
   } else {
     $(".bar-label").attr("contenteditable", "false");
   }
 });
 
+// setting bar colours
 let color;
 $("#colorPicker").on("click", function () {
   color = $("#colorPicker").val();
@@ -54,6 +54,29 @@ $("#colorPicker").on("click", function () {
 
 $(".setColor").on("click", function () {
   $(".bar").css("background", color);
+});
+
+// silly hidden delay when hovering over title
+let delay = 1000,
+  setTimeoutConst;
+$(".title").hover(
+  function () {
+    setTimeoutConst = setTimeout(function () {
+      $(".title").text("🚀");
+    }, delay);
+  },
+  function () {
+    clearTimeout(setTimeoutConst);
+  }
+);
+
+// remove title
+$("input[type=checkbox]").change(function () {
+  if (this.checked) {
+    $(".title").attr("hidden", "true");
+  } else {
+    $(".title").removeAttr("hidden");
+  }
 });
 
 let testData = [2, 8, 7, 10, 15];
