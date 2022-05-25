@@ -67,16 +67,21 @@ body {
 .options-container {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   background-color: rgb(217, 217, 217);
-  padding: 20px;
 }
 
 .options-title {
   text-align: center;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .single-option {
-  padding: 20px;
-  align-content: flex-start;
+  padding: 10px;
+  font-size: 0.75em;
+}
+
+.changeBtn {
+  align-self: center;
 }

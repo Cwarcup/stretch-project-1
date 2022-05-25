@@ -62,18 +62,22 @@ const createBarChart = (data, options, element) => {
   }
 
   // change bar color when clicked
-  // need to set a different way of picking the color
-  $(".bar").on("click", function () {
-    if (options.barColor) {
-      $(".bar").css("background", options.barColor);
-    }
-  });
 
+  // update options
   $(".changeBtn").on("click", function () {
     $(".title").text($("#titleChange").val());
     $("#titleChange").val("");
   });
 
+  // change box colours
+  // $(".bar").css("background", $("#colorPicker").val());
+  $("#colorPicker").ColorPicker({
+    onChange: function () {
+      $(".bar").css("background", $(this.value));
+    },
+  });
+
+  // change labels on checked
   $("input[type=checkbox]").change(function () {
     if (this.checked) {
       $(".bar-label").attr("contenteditable", "true");
