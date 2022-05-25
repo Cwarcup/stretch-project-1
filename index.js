@@ -21,8 +21,23 @@
 
 const createBarChart = (data, options, element) => {
   $(element).add(data.toString());
+
+  let numOfBars = data.length;
+
+  for (let i = 0; i < numOfBars; i++) {
+    console.log("barcharty height" + $("#barChart").height());
+    console.log(data[i]);
+    let percentHeight =
+      ($("#barChart").height() / $("#barChart").height()) * data[i];
+    console.log(percentHeight);
+    $(".xAxisContainer").append(
+      `
+      <div class='bar' id='${data[i]}' value='${data[i]}' style='height: ${percentHeight}%;'>${data[i]}</div>
+      `
+    );
+  }
 };
-let testData = [5, 10, 15, 20];
+let testData = [5, 10, 15, 20, 50];
 let testOptions = {
   width: "80%",
   height: "400px",

@@ -40,11 +40,18 @@ body {
 
 .xAxisContainer {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-end;
   background-color: rgb(71, 71, 71);
   top: 0.5em;
   margin: 0.5, 0.5em, 0.5em, 0;
   padding: 1em;
   height: 90%;
   width: 95%;
+}
+
+.bar {
+  background: blue;
+  width: 10%;
 }
