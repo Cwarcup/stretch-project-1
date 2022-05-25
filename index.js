@@ -1,35 +1,4 @@
-// const domObjects = {
-//   title: ".title",
-//   chart: ".chart",
-// };
-
-// $(function () {
-//   // const buildChart = (chartName) => {
-//   //   $("body").append(`<div id=${chartName}barChart></div>`);
-//   //   $(`#${chartName}barChart`).append(
-//   //     `
-//   //       <div class="title">
-//   //         <div id="titleText" style="display: none">
-//   //           <p id="titleString"></p>
-//   //         </div>
-//   //       </div>
-//   //       `
-//   //   );
-//   // };
-//   // // buildChart("Test");
-// });
-
 const createBarChart = (data, options, element) => {
-  // add yAxis scale
-  // let maxYValue = Math.ceil(Math.max(...data) / 10) * 10;
-  // console.log(maxYValue);
-  // let [yAxisArr, percent] = [[], 0.1];
-  // for (let i = 0; i < 10; i++) {
-  //   let newVal = Math.ceil(maxYValue * percent);
-  //   yAxisArr.push(newVal);
-  //   percent += 0.1;
-  // }
-
   // add bars to xAxisContainer
   $(element).add(data.toString());
   let maxValue = Math.max(...data);
@@ -60,33 +29,32 @@ const createBarChart = (data, options, element) => {
       `
     );
   }
-
-  // change bar color when clicked
-
-  // update options
-  $(".changeBtn").on("click", function () {
-    $(".title").text($("#titleChange").val());
-    $("#titleChange").val("");
-  });
-
-  // change box colours
-  // $(".bar").css("background", $("#colorPicker").val());
-  $("#colorPicker").ColorPicker({
-    onChange: function () {
-      $(".bar").css("background", $(this.value));
-    },
-  });
-
-  // change labels on checked
-  $("input[type=checkbox]").change(function () {
-    if (this.checked) {
-      $(".bar-label").attr("contenteditable", "true");
-      console.log("yes");
-    } else {
-      $(".bar-label").attr("contenteditable", "false");
-    }
-  });
 };
+
+// update title
+$(".changeBtn").on("click", function () {
+  $(".title").text($("#titleChange").val());
+  $("#titleChange").val("");
+});
+
+// change labels on checked
+$("input[type=checkbox]").change(function () {
+  if (this.checked) {
+    $(".bar-label").attr("contenteditable", "true");
+    console.log("yes");
+  } else {
+    $(".bar-label").attr("contenteditable", "false");
+  }
+});
+
+let color;
+$("#colorPicker").on("click", function () {
+  color = $("#colorPicker").val();
+});
+
+$(".setColor").on("click", function () {
+  $(".bar").css("background", color);
+});
 
 let testData = [2, 8, 7, 10, 15];
 let testOptions = {
