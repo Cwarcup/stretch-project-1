@@ -69,15 +69,18 @@ const createBarChart = (data, options, element) => {
     }
   });
 
-  $(".title").on("click", function () {
-    if (options.barColor) {
-      $(".bar").css("background", options.barColor);
-    }
-  });
-
   $(".changeBtn").on("click", function () {
     $(".title").text($("#titleChange").val());
     $("#titleChange").val("");
+  });
+
+  $("input[type=checkbox]").change(function () {
+    if (this.checked) {
+      $(".bar-label").attr("contenteditable", "true");
+      console.log("yes");
+    } else {
+      $(".bar-label").attr("contenteditable", "false");
+    }
   });
 };
 
