@@ -21,34 +21,48 @@
 
 const createBarChart = (data, options, element) => {
   // add yAxis scale
-  let maxYValue = Math.ceil(Math.max(...data) / 10) * 10;
-  console.log(maxYValue);
+  // let maxYValue = Math.ceil(Math.max(...data) / 10) * 10;
+  // console.log(maxYValue);
+  // let [yAxisArr, percent] = [[], 0.1];
+  // for (let i = 0; i < 10; i++) {
+  //   let newVal = Math.ceil(maxYValue * percent);
+  //   yAxisArr.push(newVal);
+  //   percent += 0.1;
+  // }
 
   // add bars to xAxisContainer
   $(element).add(data.toString());
   let maxValue = Math.max(...data);
-  console.log();
   let numOfBars = data.length;
   for (let i = 0; i < numOfBars; i++) {
     let containerPx = $("#barChart").height();
-    console.log("container height: " + containerPx);
     let maxBarHeight = Math.floor($("#barChart").height()) * 0.85;
-    console.log("maxBarHeight: " + maxBarHeight);
-
     let factor = maxBarHeight / maxValue;
-
+    // x axis
     $(".xAxisContainer").append(
       `
-      
       <div class='bar' id='${data[i]}' value='${data[i]}' style='height: ${
         factor * data[i]
       }px;'>${data[i]}</div>
       `
     );
+
+    // y axis
+    $(".yAxisContainer").append(
+      `
+      <div class='y-axis-values' style='bottom: ${16 + factor * data[i]}px '>
+      ${data[i]}
+      </div>
+      `
+    );
+  }
+
+  if (options.barColor) {
+    $(".bar").css("background", options.barColor);
   }
 };
 
-let testData = [5, 10, 20, 13, 28];
+let testData = [2, 8, 7, 10, 15];
 let testOptions = {
   width: "80%",
   height: "400px",
@@ -58,6 +72,7 @@ let testOptions = {
   valuePosition: "middle",
   barSpacing: "80%",
   stacked: false,
+  barColor: "red",
 };
 let testElement = "#barChart";
 
