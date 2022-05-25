@@ -60,3 +60,20 @@ body {
   background: blue;
   width: 10%;
 }
+
+.options-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: rgb(217, 217, 217);
+  padding: 20px;
+}
+
+.options-title {
+  text-align: center;
+}
+
+.single-option {
+  padding: 20px;
+  align-content: flex-start;
+}

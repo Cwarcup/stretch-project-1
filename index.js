@@ -57,9 +57,19 @@ const createBarChart = (data, options, element) => {
     );
   }
 
-  if (options.barColor) {
-    $(".bar").css("background", options.barColor);
-  }
+  // change bar color when clicked
+  // need to set a different way of picking the color
+  $(".bar").on("click", function () {
+    if (options.barColor) {
+      $(".bar").css("background", options.barColor);
+    }
+  });
+
+  $(".title").on("click", function () {
+    if (options.barColor) {
+      $(".bar").css("background", options.barColor);
+    }
+  });
 };
 
 let testData = [2, 8, 7, 10, 15];
