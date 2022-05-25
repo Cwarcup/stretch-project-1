@@ -43,7 +43,11 @@ const createBarChart = (data, options, element) => {
       `
       <div class='bar' id='${data[i]}' value='${data[i]}' style='height: ${
         factor * data[i]
-      }px;'>${data[i]}</div>
+      }px;'>
+        <div class='bar-label' style='top: ${
+          factor * data[i]
+        }px; text-align: center '>${data[i]}</div>
+      </div>
       `
     );
 
@@ -69,6 +73,11 @@ const createBarChart = (data, options, element) => {
     if (options.barColor) {
       $(".bar").css("background", options.barColor);
     }
+  });
+
+  $(".changeBtn").on("click", function () {
+    $(".title").text($("#titleChange").val());
+    $("#titleChange").val("");
   });
 };
 
