@@ -20,30 +20,35 @@
 // });
 
 const createBarChart = (data, options, element) => {
+  // add yAxis scale
+  let maxYValue = Math.ceil(Math.max(...data) / 10) * 10;
+  console.log(maxYValue);
+
+  // add bars to xAxisContainer
   $(element).add(data.toString());
-
-  let numOfBars = data.length;
   let maxValue = Math.max(...data);
-  console.log(maxValue);
-
+  console.log();
+  let numOfBars = data.length;
   for (let i = 0; i < numOfBars; i++) {
     let containerPx = $("#barChart").height();
     console.log("container height: " + containerPx);
-    let maxBarHeight =
-      (Math.floor($("#barChart").height()) * (maxValue * 0.9)) / 100;
+    let maxBarHeight = Math.floor($("#barChart").height()) * 0.85;
     console.log("maxBarHeight: " + maxBarHeight);
 
-    let barHeightRelToMax = Math.floor((maxBarHeight * data[i]) / 100);
-    console.log("barHeightRelToMax: " + barHeightRelToMax);
+    let factor = maxBarHeight / maxValue;
 
     $(".xAxisContainer").append(
       `
-      <div class='bar' id='${data[i]}' value='${data[i]}' style='height: ${barHeightRelToMax}px;'>${data[i]}</div>
+      
+      <div class='bar' id='${data[i]}' value='${data[i]}' style='height: ${
+        factor * data[i]
+      }px;'>${data[i]}</div>
       `
     );
   }
 };
-let testData = [5, 10, 15, 75, 20, 50, 99];
+
+let testData = [5, 10, 20, 13, 28];
 let testOptions = {
   width: "80%",
   height: "400px",

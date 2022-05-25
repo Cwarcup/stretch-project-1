@@ -41,7 +41,7 @@ body {
 .xAxisContainer {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: flex-end;
   background-color: rgb(71, 71, 71);
   top: 0.5em;
