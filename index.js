@@ -1,4 +1,4 @@
-let testData = [10, 20, 30, 40];
+let testData = [10, 20, 30, 55, 23];
 let testOptions = {
   title: "Test Bar Chart",
   barColor: "#354259",
@@ -11,8 +11,8 @@ let testOptions = {
   // barSpacing: "80%",
   // stacked: false,
   // barColor: "red",
-  tickInterval: 5,
-  gapSize: "10px",
+  tickInterval: 10,
+  gapSize: "100px",
 };
 let testElement = "#grid-chart";
 
@@ -23,7 +23,7 @@ const createBarChart = (data, options, element) => {
 
   // create rows and cols for grid
   $("#grid-chart").css({
-    "grid-template-columns": `50px repeat(${numOfBars}, auto`,
+    "grid-template-columns": `50px repeat(${numOfBars + 1}, auto`,
     "grid-template-rows": `repeat(${maxValue}, auto) 20px`,
   });
 
@@ -51,18 +51,14 @@ const createBarChart = (data, options, element) => {
   // y axis ticks
   let maxRow = maxValue;
   for (let i = 0; i <= maxValue; i += tickInterval) {
-    console.log(maxValue);
     $("#grid-chart").append(
       `
       <div style='
       grid-column: 1 / 2;
       grid-row: ${maxRow + 1} / ${maxRow + 2}'>${i}
-      
       </div>
-      
       `
     );
-    console.log(i);
     maxRow -= tickInterval;
   }
 
@@ -73,31 +69,34 @@ const createBarChart = (data, options, element) => {
 
   // end of initial setup
 };
+createBarChart(testData, testOptions, testElement);
 
-// // update title
-// $(".changeBtn").on("click", function () {
-//   $(".title").text($("#titleChange").val());
-//   $("#titleChange").val("");
-// });
+const clearInput = function (selector) {
+  $(selector).val("");
+};
 
-// // change labels on checked
-// $("input[type=checkbox]").change(function () {
-//   if (this.checked) {
-//     $(".bar-label").attr("contenteditable", "true");
-//   } else {
-//     $(".bar-label").attr("contenteditable", "false");
-//   }
-// });
+// update title
+const titleChange = function () {
+  console.log("title changed");
+  $(".grid-title").text($("#titleVal").val());
+  clearInput("#titleVal");
+};
+
+$(".titleBtn").on("click", function () {
+  titleChange();
+});
 
 // // setting bar colours
-// let color;
-// $("#colorPicker").on("click", function () {
-//   color = $("#colorPicker").val();
-// });
+function changeBarColor() {
+  let color;
 
-// $(".setColor").on("click", function () {
-//   $(".bar").css("background", color);
-// });
+  $("#colorPicker").on("click", function () {
+    color = $("#colorPicker").val();
+  });
+  $(".setColor").on("click", function () {
+    $(".bar").css("background", color);
+  });
+}
 
 // // silly hidden delay when hovering over title
 // let delay = 5000,
@@ -127,7 +126,6 @@ const createBarChart = (data, options, element) => {
 // });
 
 // initial setup with test data
-createBarChart(testData, testOptions, testElement);
 
 // // reset graphs on click
 // $(".removeAll").on("click", function () {

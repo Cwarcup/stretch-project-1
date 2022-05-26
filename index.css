@@ -94,7 +94,7 @@ body {
   display: grid;
   width: 90%;
   grid-template-columns: 100%;
-  grid-template-rows: 10vh 70vh 20vh;
+  grid-template-rows: 10vh 70vh auto;
   grid-gap: 1rem;
   background-color: #c2ded1;
 }
@@ -115,4 +115,10 @@ body {
 
 .single-bar {
   width: auto;
+}
+
+.grid-options-container {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-template-rows: auto;
 }
