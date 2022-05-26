@@ -3,11 +3,10 @@ let testOptions = {
   title: "Test Bar Chart",
   barColor: "#344feb",
   labels: ["One", "Two", "three"],
-  // width: "80%",
+  width: "15",
   // height: "400px",
-  // title: "Bar Chart Title",
-  // titleFontSize: "2em",
-  // titleColour: "black",
+  titleFontSize: "1.5em",
+  titleColor: "black",
   // valuePosition: "middle",
   // barSpacing: "80%",
   // stacked: false,
@@ -16,7 +15,7 @@ let testOptions = {
 let testElement = "#barChart";
 
 const createBarChart = (data, options, element) => {
-  const { title, barColor, labels } = options;
+  const { title, barColor, labels, width, titleColor, titleFontSize } = options;
 
   // add bars to xAxisContainer
   $(element).add(data.toString());
@@ -29,9 +28,11 @@ const createBarChart = (data, options, element) => {
     // x axis
     $(".xAxisContainer").append(
       `
-      <div class='bar' id='${data[i]}' value='${data[i]}' style='height: ${
+      <div class='bar' id='${data[i]}' value='${data[i]}' 
+      style='height: ${
         factor * data[i]
-      }px; background: ${barColor}'>
+      }px; background: ${barColor}; width:${width}%'>
+
         <div class='bar-label' style='top: ${
           factor * data[i]
         }px; text-align: center; '>${labels[i]}</div>
@@ -51,6 +52,8 @@ const createBarChart = (data, options, element) => {
 
   // set title
   $(".title").text(title);
+  $(".title").css("color", `${titleColor}`);
+  $(".title").css("font-size", `${titleFontSize}`);
 };
 
 // update title
