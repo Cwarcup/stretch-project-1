@@ -1,4 +1,4 @@
-let testData = [10, 20, 30];
+let testData = [10, 20, 30, 40];
 let testOptions = {
   title: "Test Bar Chart",
   barColor: "#354259",
@@ -11,11 +11,12 @@ let testOptions = {
   // barSpacing: "80%",
   // stacked: false,
   // barColor: "red",
+  tickInterval: 5,
 };
 let testElement = "#grid-chart";
 
 const createBarChart = (data, options, element) => {
-  const { title, barColor, labels } = options;
+  const { title, barColor, labels, tickInterval } = options;
   let numOfBars = data.length;
   let maxValue = Math.max(...data);
 
@@ -25,7 +26,7 @@ const createBarChart = (data, options, element) => {
     "grid-template-rows": `repeat(${maxValue}, auto) 20px`,
   });
 
-  // add bars to xAxisContainer
+  // add bars to gridchart between 2 / 3
   let colStart = 2;
   let colEnd = 3;
   let startingRow = maxValue + 2;
@@ -41,6 +42,25 @@ const createBarChart = (data, options, element) => {
     );
     colStart++;
     colEnd++;
+  }
+
+  // y axis ticks
+
+  let maxRow = maxValue;
+  for (let i = 0; i <= maxValue; i += tickInterval) {
+    console.log(maxValue);
+    $("#grid-chart").append(
+      `
+      <div style='
+      grid-column: 1 / 2;
+      grid-row: ${maxRow + 1} / ${maxRow + 2}'>${i}
+      
+      </div>
+      
+      `
+    );
+    console.log(i);
+    maxRow -= tickInterval;
   }
 
   // set title
