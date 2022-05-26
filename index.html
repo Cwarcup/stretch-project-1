@@ -48,9 +48,26 @@
           <button class="addValueBtn">Add Value</button>
         </div>
         <div class="single-option">
-          <input type="text" id="newData" placeholder="1, 2, 3, 4" />
-          <input type="text" id="newLabel" placeholder="Cat, Dog, Bird, Goat" />
-          <button class="removeAll">New Graph with Options</button>
+          <div class="showOptions">More Options</div>
+          <div class="options">
+            <div class="hide">
+              <div>Enter New Data</div>
+              <input type="text" id="newData" placeholder="1, 2, 3, 4" />
+              <div>Enter Labels for Data</div>
+              <input type="text" id="newLabel" placeholder="Cat, Dog, Bird, Goat" />
+              <div>Bar Width</div>
+              <input type="number" id="barWidth" min="5" max="40"/>
+              <div>Title Size</div>
+              <input type="number" id="titleFontSize" min="1" max="200"/>
+              <br>
+              <input type="color" value="#e66465" id="titleColor" />
+              <button class="setColor">Set Colour</button>
+              <hr>
+              <button class="removeAll">New Graph with Options</button>
+
+            </div>
+
+          </div>
         </div>
 
       </div>

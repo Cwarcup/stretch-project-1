@@ -84,7 +84,7 @@ $(".setColor").on("click", function () {
 });
 
 // silly hidden delay when hovering over title
-let delay = 1000,
+let delay = 5000,
   setTimeoutConst;
 $(".title").hover(
   function () {
@@ -122,9 +122,9 @@ $(".removeAll").on("click", function () {
     title: $("#titleChange").val(),
     barColor: $("#colorPicker").val(),
     labels: $("#newLabel").val().split(","),
-    width: "15",
-    titleFontSize: "1.5em",
-    titleColor: "black",
+    width: $("#barWidth").val(),
+    titleFontSize: $("#titleFontSize").val(),
+    titleColor: $("#titleColor").val(),
     // barSpacing: "80%",
     // stacked: false,
   };
@@ -140,4 +140,16 @@ $(".removeAll").on("click", function () {
   console.log(newOptions);
 
   createBarChart(newData, newOptions, element);
+});
+
+let dropdownPresent = false;
+$(".options").hide();
+
+$(".showOptions").on("click", function () {
+  if (!dropdownPresent) {
+    $(".options").fadeIn();
+    dropdownPresent = true;
+  } else {
+    $(".options").fadeOut();
+  }
 });
