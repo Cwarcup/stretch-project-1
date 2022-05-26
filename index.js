@@ -54,6 +54,8 @@ const createBarChart = (data, options, element) => {
   $(".title").text(title);
   $(".title").css("color", `${titleColor}`);
   $(".title").css("font-size", `${titleFontSize}`);
+
+  // end of initial setup
 };
 
 // update title
@@ -108,14 +110,34 @@ $(".addValueBtn").on("click", function () {
   testData.push($("#addValue").val());
 });
 
+// initial setup with test data
 createBarChart(testData, testOptions, testElement);
 
-// reset graphs
+// reset graphs on click
 $(".removeAll").on("click", function () {
-  $("#barChart").empty();
+  $(".yAxisContainer").empty();
+  $(".xAxisContainer").empty();
 
-  let newData = $(".newData").val();
-  let newLabel = $(".newLabel").val();
-  let color = $("#colorPicker").val();
-  let title = $("#titleChange").val();
+  let newOptions = {
+    title: $("#titleChange").val(),
+    barColor: $("#colorPicker").val(),
+    labels: $("#newLabel").val().split(","),
+    width: "15",
+    titleFontSize: "1.5em",
+    titleColor: "black",
+    // barSpacing: "80%",
+    // stacked: false,
+  };
+
+  let element = "#barChart";
+  let newData = $("#newData")
+    .val()
+    .split(",")
+    .map(function (item) {
+      return parseInt(item, 10);
+    });
+  console.log(newData);
+  console.log(newOptions);
+
+  createBarChart(newData, newOptions, element);
 });
