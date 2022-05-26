@@ -41,13 +41,13 @@ const createBarChart = (data, options, element) => {
     );
 
     // y axis
-    $(".yAxisContainer").append(
-      `
-      <div class='y-axis-values' style='bottom: ${16 + factor * data[i]}px '>
-      ${data[i]}
-      </div>
-      `
-    );
+    // $(".yAxisContainer").append(
+    //   `
+    //   <div class='y-axis-values' style='bottom: ${16 + factor * data[i]}px '>
+    //   ${data[i]}
+    //   </div>
+    //   `
+    // );
   }
 
   // set title

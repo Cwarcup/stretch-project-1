@@ -1,8 +1,10 @@
 body {
   font-family: "Montserrat", sans-serif;
+  display: flex;
+  justify-content: center;
 }
 
-.title {
+/* .title {
   font-size: 1.5em;
   position: relative;
   top: 0.5em;
@@ -84,4 +86,39 @@ body {
 
 .changeBtn {
   align-self: center;
+} */
+
+/* grid stuff */
+
+.grid-container {
+  display: grid;
+  width: 90%;
+  grid-template-columns: 100%;
+  grid-template-rows: 10vh 70vh 20vh;
+  grid-gap: 1rem;
+  background-color: #c2ded1;
+}
+
+.grid-title {
+  grid-column: 1;
+  grid-row: 1;
+  text-align: center;
+  padding: 1em;
+}
+
+.grid-chart {
+  display: grid;
+  grid-template-columns: 10% 90%;
+  grid-template-rows: 100%;
+  grid-gap: 0.5rem;
+  background-color: #ece5c7;
+}
+
+.yAxisContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(4, 25%);
+  max-height: 1000px;
+  min-height: 100px;
+  gap: 0.5rem;
 }
