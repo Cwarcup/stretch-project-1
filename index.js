@@ -1,4 +1,4 @@
-let testData = [10, 20, 30, 40];
+let testData = [10, 20, 30];
 let testOptions = {
   title: "Test Bar Chart",
   barColor: "#354259",
@@ -20,21 +20,23 @@ const createBarChart = (data, options, element) => {
   let maxValue = Math.max(...data);
 
   // create rows and cols for grid
-
   $("#grid-chart").css({
-    "grid-template-rows": `repeat(${maxValue}, auto) 20px`,
     "grid-template-columns": `50px repeat(${numOfBars}, auto`,
+    "grid-template-rows": `repeat(${maxValue}, auto) 20px`,
   });
 
   // add bars to xAxisContainer
-  console.log(numOfBars);
-
   let colStart = 2;
   let colEnd = 3;
+  let startingRow = maxValue + 2;
   for (let i = 0; i < numOfBars; i++) {
-    $(".bars-container").append(
+    $("#grid-chart").append(
       `
-      <div class='single-bar' id='${data[i]}' value='${data[i]}' style='background: ${barColor}; grid-column: ${colStart} / ${colEnd}; grid-row: '></div>
+      <div class='single-bar' id='${data[i]}' value='${
+        data[i]
+      }' style='background: ${barColor}; grid-column: ${colStart} / ${colEnd}; grid-row: ${
+        startingRow - data[i]
+      } / ${maxValue + 2}'></div>
       `
     );
     colStart++;

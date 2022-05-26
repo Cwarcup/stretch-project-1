@@ -108,18 +108,9 @@ body {
 
 #grid-chart {
   display: grid;
-  max-height: 1000px;
-  min-height: 100px;
+  /* max-height: 1000px;
+  min-height: 100px; */
   background-color: #ece5c7;
-}
-
-.y-axis-container {
-  grid-column: 1 / 2;
-  grid-row: 1 / 2;
-}
-
-.bars-container {
-  grid-row: 1 / 2;
 }
 
 .single-bar {
