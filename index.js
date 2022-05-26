@@ -115,6 +115,8 @@ createBarChart(testData, testOptions, testElement);
 
 // reset graphs on click
 $(".removeAll").on("click", function () {
+  
+
   $(".yAxisContainer").empty();
   $(".xAxisContainer").empty();
 
@@ -125,8 +127,6 @@ $(".removeAll").on("click", function () {
     width: $("#barWidth").val(),
     titleFontSize: $("#titleFontSize").val(),
     titleColor: $("#titleColor").val(),
-    // barSpacing: "80%",
-    // stacked: false,
   };
 
   let element = "#barChart";
@@ -142,14 +142,15 @@ $(".removeAll").on("click", function () {
   createBarChart(newData, newOptions, element);
 });
 
+// Options dropdown
 let dropdownPresent = false;
 $(".options").hide();
-
 $(".showOptions").on("click", function () {
   if (!dropdownPresent) {
     $(".options").fadeIn();
     dropdownPresent = true;
   } else {
     $(".options").fadeOut();
+    dropdownPresent = false;
   }
 });
