@@ -86,6 +86,15 @@ $(".titleBtn").on("click", function () {
   titleChange();
 });
 
+// remove title
+$("input[type=checkbox]").change(function () {
+  if (this.checked) {
+    $(".grid-title").text("");
+  } else {
+    $(".grid-title").text("Bar Chart");
+  }
+});
+
 // // setting bar colours
 function changeBarColor() {
   let color;
