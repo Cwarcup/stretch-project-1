@@ -90,7 +90,7 @@ body {
 
 /* grid stuff */
 
-.grid-container {
+#grid-container {
   display: grid;
   width: 90%;
   grid-template-columns: 100%;
@@ -100,25 +100,28 @@ body {
 }
 
 .grid-title {
-  grid-column: 1;
-  grid-row: 1;
+  grid-column: 1fr;
+  grid-row: 1fr;
   text-align: center;
   padding: 1em;
 }
 
-.grid-chart {
+#grid-chart {
   display: grid;
-  grid-template-columns: 10% 90%;
-  grid-template-rows: 100%;
-  grid-gap: 0.5rem;
+  max-height: 1000px;
+  min-height: 100px;
   background-color: #ece5c7;
 }
 
-.yAxisContainer {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: repeat(4, 25%);
-  max-height: 1000px;
-  min-height: 100px;
-  gap: 0.5rem;
+.y-axis-container {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+
+.bars-container {
+  grid-row: 1 / 2;
+}
+
+.single-bar {
+  width: auto;
 }
