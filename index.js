@@ -12,11 +12,12 @@ let testOptions = {
   // stacked: false,
   // barColor: "red",
   tickInterval: 5,
+  gapSize: "10px",
 };
 let testElement = "#grid-chart";
 
 const createBarChart = (data, options, element) => {
-  const { title, barColor, labels, tickInterval } = options;
+  const { title, barColor, labels, tickInterval, gapSize } = options;
   let numOfBars = data.length;
   let maxValue = Math.max(...data);
 
@@ -26,6 +27,8 @@ const createBarChart = (data, options, element) => {
     "grid-template-rows": `repeat(${maxValue}, auto) 20px`,
   });
 
+  $("#grid-chart").css("grid-column-gap", `${gapSize}`);
+
   // add bars to gridchart between 2 / 3
   let colStart = 2;
   let colEnd = 3;
@@ -33,11 +36,12 @@ const createBarChart = (data, options, element) => {
   for (let i = 0; i < numOfBars; i++) {
     $("#grid-chart").append(
       `
-      <div class='single-bar' id='${data[i]}' value='${
-        data[i]
-      }' style='background: ${barColor}; grid-column: ${colStart} / ${colEnd}; grid-row: ${
-        startingRow - data[i]
-      } / ${maxValue + 2}'></div>
+      <div class='single-bar' id='${data[i]}' value='${data[i]}' 
+      style='
+      background: ${barColor}; 
+      grid-column: ${colStart} / ${colEnd}; 
+      grid-row: ${startingRow - data[i]} / ${maxValue + 2};
+      '></div>
       `
     );
     colStart++;
@@ -45,7 +49,6 @@ const createBarChart = (data, options, element) => {
   }
 
   // y axis ticks
-
   let maxRow = maxValue;
   for (let i = 0; i <= maxValue; i += tickInterval) {
     console.log(maxValue);
