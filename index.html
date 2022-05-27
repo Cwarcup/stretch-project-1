@@ -90,7 +90,72 @@
   <div id="stacked-container">
     <div id="stacked-title"></div>
     <div id="stacked-grid"></div>
-    <div id="stacked-options"></div>
+    <div id="stacked-options">
+      <div class="options left">
+        <div class="single-option">
+          <label>Data #1:
+            <input type="text" id="data1" placeholder="2, 4, 7, 3, 6" />
+          </label>
+          <label>Data #2:
+            <input type="text" id="data2" placeholder="5, 10, 3, 8, 1" />
+          </label>
+        </div>
+        <div class="single-option">
+          <label>Labels:
+            <input type="text" id="newLabels" placeholder="Dog, Cat, Fish, Monkey, Human" />
+          </label>
+        </div>
+        <div class="single-option">
+          <label>Interval size:
+            <input type="number" id="tickInterval" placeholder="10" />
+          </label>
+        </div>
+
+        <div class="single-option">
+          <label>Title Size:
+            <select id="titleSize">
+              <option value="1.5"></option>
+              <option value="1em">Small</option>
+              <option value="2.5em">Medium</option>
+              <option value="3.5em">Large</option>
+            </select>
+          </label>
+        </div>
+        <div class="single-option">
+          <label>Bar Gap Size:
+            <select id="gapSize">
+              <option value="10%"></option>
+              <option value="0%">No gap</option>
+              <option value="2%">Small</option>
+              <option value="5%">Medium</option>
+              <option value="12%">Large</option>
+            </select>
+          </label>
+        </div>
+        <div class="single-option">
+          <label>Remove Title
+            <input id='checkbox' type="checkbox" id="removeTitle" />
+          </label>
+        </div>
+      </div>
+      <div class="options right">
+        <div class="single-option">
+          <button id="update-stacked-graph">Update All Selected Options</button>
+        </div>
+        <div class="single-option">
+          <input type="text" id="titleVal" placeholder="Bar Chart Title" />
+          <button class="titleBtn">Change Title</button>
+        </div>
+        <div class="single-option">
+          <input type="color" value="#393e46" id="titleColor" />
+          <button class="setTitleColor">Set Title Colour</button>
+        </div>
+        <div class="single-option">
+          <input type="color" value="#00adb5" id="colorPicker" />
+          <button class="setBarColor">Set Bar Colour</button>
+        </div>
+      </div>
+    </div>
 
   </div>
   <script src="index.js" rel="'stylesheet"></script>

@@ -75,14 +75,14 @@ const clearInput = function (selector) {
 };
 
 // update title
-const titleChange = function () {
-  $(".grid-title").text($("#titleVal").val());
+const titleChange = function (selector) {
+  $(selector).text($("#titleVal").val());
   clearInput("#titleVal");
 };
 
-// change title btn
+// change title btn on single bar chart
 $(".titleBtn").on("click", function () {
-  titleChange();
+  titleChange(".grid-title");
 });
 
 // remove title
@@ -103,8 +103,6 @@ const didItChange = function (selector) {
     return true;
   }
 };
-
-// const updateGraph = function (newData, newOptions, testElement) {};
 
 // update graph with any options that have been changed
 $(".update-graph").on("click", function () {
@@ -214,11 +212,11 @@ let stackedData = {
     {
       label: "Mar",
       data1: 5,
-      data2: 30,
+      data2: 80,
     },
   ],
   options: {
-    title: "Test Bar Chart",
+    title: "Stacked Bar Chart",
     barColor: "#00ADB5",
     titleFontSize: "1.5em",
     titleColor: "#eeeeee",
@@ -291,20 +289,58 @@ const createStackedChart = function (data) {
     colStart++;
     colEnd++;
   }
-  // $("#stacked-grid").append(
-  //   `
-  //   <div class='lowerBar' id='${data[i]}' value='${data[i]}'
-  //   style='
-  //   background: ${barColor};
-  //   grid-column: ${colStart} / ${colEnd};
-  //   grid-row: ${startingRow - data[i]} / ${maxValue + 2};
-  //   '></div>
-  //   <div class='dataLabel' style='
-  //   grid-column: ${colStart} / ${colEnd};
-  //   grid-row: ${maxValue + 2};
-  //   '>${labels[i]}</div>
-  //   `
-  // );
+
+  // y axis
+  let maxRow = maxValueCombined;
+  for (let i = 0; i <= maxValueCombined; i += tickInterval) {
+    $("#stacked-grid").append(
+      `
+      <div style='
+      grid-column: 1 / 2;
+      grid-row: ${maxRow + 1} / ${maxRow + 2}'>${i}
+      </div>
+      `
+    );
+    maxRow -= tickInterval;
+  }
+
+  // set title from data
+  $("#stacked-title").text(title);
+  $("#stacked-title").css("color", `${titleColor}`);
+  $("#stacked-title").css("font-size", `${titleFontSize}`);
+
+  // end of initial setup
 };
 
+// initialize stacked bar chart with default data
 createStackedChart(stackedData);
+
+// update graph with any options that have been changed
+$("#update-stacked-graph").on("click", function () {
+  let { dataPoints, options } = stackedData;
+  // check for data1 updates
+  if (didItChange("#data1")) {
+    $("#stacked-grid").empty();
+
+    // get new data 1 into each data object
+    let newStackedData1 = getDataPoints(dataPoints, "data1");
+    console.log(stackedData);
+    createStackedChart(stackedData);
+  }
+});
+
+const getDataPoints = function (dataArr, dataSub) {
+  let index = 0;
+  for (let item of dataArr) {
+    let newVal = parseInt($("#data1").val().split(",")[index]);
+    item["" + `${dataSub}` + ""] = newVal;
+    index++;
+  }
+};
+
+// dataPoints: [
+//   {
+//     label: "Jan",
+//     data1: 10,
+//     data2: 20,
+//   },

@@ -64,7 +64,8 @@ body {
   text-align: center;
 }
 
-.update-graph {
+.update-graph,
+#update-stacked-graph {
   border: 2px solid #393e46;
   color: #393e46;
   padding: 16px 32px;
@@ -146,6 +147,14 @@ button:hover {
   width: 90%;
   background-color: #393e46;
   border-radius: 5px;
+  margin-top: 1em;
+}
+
+#stacked-title {
+  grid-column: 1fr;
+  grid-row: 1fr;
+  text-align: center;
+  padding: 1em;
 }
 
 #stacked-grid {
@@ -158,4 +167,12 @@ button:hover {
   padding: 2em 2em 0.5em 2em;
   border-left: 1px solid #393e46;
   border-right: 1px solid #393e46;
+}
+
+#stacked-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  color: #393e46;
+  padding-top: 1em;
 }
