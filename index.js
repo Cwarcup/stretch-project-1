@@ -224,6 +224,8 @@ let stackedData = {
 
 const createStackedChart = function (data) {
   const { dataPoints, options } = data;
+  const { title, barColor, titleFontSize, titleColor, tickInterval, gapSize } =
+    options;
 
   let numOfBars = dataPoints.length;
   let maxValueCombined = getMaxValueCombined(dataPoints);
@@ -242,8 +244,54 @@ const createStackedChart = function (data) {
   // create rows and cols for grid
   $("#stacked-grid").css({
     "grid-template-columns": `1fr repeat(${numOfBars + 1}, 1fr)`,
-    "grid-template-rows": `repeat(${maxValueCombined * 2}, auto) 20px`,
+    "grid-template-rows": `repeat(${maxValueCombined}, auto) 20px`,
   });
+
+  // grid gap
+  $("#stacked-grid").css("grid-column-gap", `${gapSize}`);
+
+  // add bars to gridchart between 2 / 3
+  let colStart = 2;
+  let colEnd = 3;
+  let startingRow = maxValueCombined + 2;
+  // for (let i = 0; i < numOfBars; i++) {
+  for (let item of dataPoints) {
+    console.log(item["data1"]);
+    console.log(item["data2"]);
+    $("#stacked-grid").append(
+      `
+      <div class='lowerBar' id='${item["data1"]}' value='${item["data1"]}'
+      style='
+        background: ${barColor};
+        grid-column: ${colStart} / ${colEnd};
+        grid-row: ${startingRow - item["data1"]} / ${maxValueCombined + 2};
+        '></div>
+      <div class='dataLabel' style='
+      grid-column: ${colStart} / ${colEnd};
+      grid-row: ${maxValueCombined + 2};
+      '>${item["label"]}</div>
+      `
+    );
+    colStart++;
+    colEnd++;
+  }
+  // $("#stacked-grid").append(
+  //   `
+  //   <div class='lowerBar' id='${data[i]}' value='${data[i]}'
+  //   style='
+  //   background: ${barColor};
+  //   grid-column: ${colStart} / ${colEnd};
+  //   grid-row: ${startingRow - data[i]} / ${maxValue + 2};
+  //   '></div>
+  //   <div class='dataLabel' style='
+  //   grid-column: ${colStart} / ${colEnd};
+  //   grid-row: ${maxValue + 2};
+  //   '>${labels[i]}</div>
+  //   `
+  // );
+  colStart++;
+  colEnd++;
+  // }
 };
 
 createStackedChart(stackedData);
