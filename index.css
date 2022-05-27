@@ -44,8 +44,14 @@ body {
   background-color: #eeeeee;
   border-radius: 0.5rem;
   padding: 1em;
-  margin: 1em;
   text-align: center;
+}
+
+.options.left {
+  margin: 0 0.5em 1em 1em;
+}
+.options.right {
+  margin: 0 1em 1em 0.5em;
 }
 
 .update-graph {
@@ -56,7 +62,6 @@ body {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
-  margin: 4px 2px;
   transition-duration: 0.4s;
   cursor: pointer;
   border-radius: 10px;
@@ -65,4 +70,49 @@ body {
 .update-graph:hover {
   background-color: #00adb5; /* Green */
   color: #eeeeee;
+}
+
+label {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  text-align: right;
+  width: 400px;
+  line-height: 26px;
+  margin-bottom: 10px;
+}
+
+input,
+select {
+  height: 20px;
+  flex: 0 0 200px;
+  margin-left: 10px;
+}
+
+.options.right {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-start;
+  width: 400px;
+  line-height: 26px;
+  margin-bottom: 10px;
+}
+
+button {
+  border: 1px solid #00adb5;
+  color: #eeeeee;
+  background-color: #00adb5;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+button:hover {
+  background-color: #eeeeee; /* Green */
+  color: #393e46;
 }

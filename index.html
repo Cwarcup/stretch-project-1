@@ -24,43 +24,43 @@
     <div id="grid-chart">
     </div>
     <div class="grid-options-container">
-
       <div class="options left">
-
-
         <div class="single-option">
-          <div>Remove Title</div>
-          <input type="checkbox" id="removeTitle" />
+          <label>Enter New Data:
+            <input type="text" id="newData" placeholder="10, 20, 30, 55, 23" />
+          </label>
+        </div>
+        <div class="single-option">
+          <label>Interval size:
+            <input type="number" id="tickInterval" placeholder="10" />
+          </label>
         </div>
 
         <div class="single-option">
-          <div>Enter New Data: </div>
-          <input type="text" id="newData" placeholder="10, 20, 30, 55, 23" />
-        </div>
-
-        <div class="single-option">
-          <div>Interval size: </div>
-          <input type="number" id="tickInterval" placeholder="10" />
-        </div>
-
-        <div class="single-option">
-          <label>Title Size: </label>
-          <select id="titleSize">
-            <option value="1.5"></option>
-            <option value="1em">Small</option>
-            <option value="2.5em">Medium</option>
-            <option value="3.5em">Large</option>
-          </select>
+          <label>Title Size:
+            <select id="titleSize">
+              <option value="1.5"></option>
+              <option value="1em">Small</option>
+              <option value="2.5em">Medium</option>
+              <option value="3.5em">Large</option>
+            </select>
+          </label>
         </div>
         <div class="single-option">
-          <label>Bar Gap Size: </label>
-          <select id="gapSize">
-            <option value="100px"></option>
-            <option value="0px">No gap</option>
-            <option value="25px">Small</option>
-            <option value="75px">Medium</option>
-            <option value="125px">Large</option>
-          </select>
+          <label>Bar Gap Size:
+            <select id="gapSize">
+              <option value="100px"></option>
+              <option value="0px">No gap</option>
+              <option value="25px">Small</option>
+              <option value="75px">Medium</option>
+              <option value="125px">Large</option>
+            </select>
+          </label>
+        </div>
+        <div class="single-option">
+          <label>Remove Title
+            <input id='checkbox' type="checkbox" id="removeTitle" />
+          </label>
         </div>
       </div>
       <div class="options right">
@@ -68,19 +68,16 @@
           <button class="update-graph">Update All Selected Options</button>
         </div>
         <div class="single-option">
-          <div>Change Title</div>
           <input type="text" id="titleVal" placeholder="Bar Chart Title" />
           <button class="titleBtn">Change Title</button>
         </div>
         <div class="single-option">
-          <div>Change Bar Colour</div>
-          <input type="color" value="#00adb5" id="colorPicker" />
-          <button class="setBarColor">Set Colour</button>
+          <input type="color" value="#393e46" id="titleColor" />
+          <button class="setTitleColor">Set Title Colour</button>
         </div>
         <div class="single-option">
-          <div>Title Colour</div>
-          <input type="color" value="#393e46" id="titleColor" />
-          <button class="setTitleColor">Set Colour</button>
+          <input type="color" value="#00adb5" id="colorPicker" />
+          <button class="setBarColor">Set Bar Colour</button>
         </div>
       </div>
     </div>
