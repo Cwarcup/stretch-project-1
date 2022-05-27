@@ -4,90 +4,6 @@ body {
   justify-content: center;
 }
 
-/* .grid-title {
-  top: 0.5em;
-  text-align: center;
-  align-self: center;
-} */
-
-/*
-.container {
-  display: flex;
-  flex-direction: row;
-  background-color: rgb(166, 166, 166);
-  top: 0.5em;
-  margin-top: 1em;
-  padding: 1em;
-  height: 90vh;
-}
-
-#barChart {
-  width: 100%;
-  height: 100%;
-  display: flex;
-}
-
-.yAxisContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  background-color: rgb(116, 115, 115);
-  top: 0.5em;
-  margin: 0.5em, 0, 0.5em, 0.5em;
-  height: 90%;
-  width: 5%;
-  padding-left: 1em;
-}
-
-.y-axis-values {
-  position: absolute;
-}
-
-.xAxisContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  align-items: flex-end;
-  background-color: rgb(71, 71, 71);
-  top: 0.5em;
-  margin: 0.5, 0.5em, 0.5em, 0;
-  height: 90%;
-  width: 95%;
-}
-
-.bar {
-  background: blue;
-  width: 10%;
-}
-.bar-label {
-  position: relative;
-  font-size: 1em;
-}
-
-.options-container {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  background-color: rgb(217, 217, 217);
-}
-
-.options-title {
-  text-align: center;
-  padding-top: 20px;
-  padding-bottom: 20px;
-}
-
-.single-option {
-  padding: 10px;
-  font-size: 0.75em;
-}
-
-.changeBtn {
-  align-self: center;
-} */
-
-/* grid stuff */
-
 #grid-container {
   display: grid;
   width: 90%;
@@ -108,15 +24,26 @@ body {
   display: grid;
   /* max-height: 1000px;
   min-height: 100px; */
-  background-color: #ece5c7;
+  background-color: #eeeeee;
+  color: #393e46;
 }
 
 .single-bar {
   width: auto;
+  border-radius: 0.5rem 0.5rem 0 0;
 }
 
 .grid-options-container {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto auto auto;
   grid-template-rows: auto;
+  color: #393e46;
+}
+
+.options {
+  background-color: #eeeeee;
+  border-radius: 0.5rem;
+  padding: 1em;
+  margin: 1em;
+  text-align: center;
 }

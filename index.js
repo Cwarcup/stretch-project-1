@@ -1,25 +1,17 @@
 let testData = [10, 20, 30, 55, 23];
 let testOptions = {
   title: "Test Bar Chart",
-  barColor: "#354259",
+  barColor: "#00ADB5",
   labels: ["One", "Two", "three"],
   titleFontSize: "1.5em",
-  titleColor: "#354259",
+  titleColor: "#222831",
   tickInterval: 10,
   gapSize: "100px",
 };
 let testElement = "#grid-chart";
 
 const createBarChart = (data, options, element) => {
-  const {
-    title,
-    barColor,
-    labels,
-    tickInterval,
-    gapSize,
-    titleFontSize,
-    titleColor,
-  } = options;
+  const { title, barColor, labels, tickInterval, gapSize } = options;
   let numOfBars = data.length;
   let maxValue = Math.max(...data);
 
@@ -135,6 +127,18 @@ $(".update-graph").on("click", function () {
     testOptions["titleFontSize"] = $("#titleSize").val();
   }
 
+  if (didItChange("#colorPicker")) {
+    testOptions["barColor"] = $("#colorPicker").val();
+  }
+
+  if (didItChange("#titleColor")) {
+    testOptions["titleColor"] = $("#titleColor").val();
+  }
+
+  if (didItChange("#gapSize")) {
+    testOptions["gapSize"] = $("#gapSize").val();
+  }
+
   console.log(testOptions);
   console.log(testData);
 
@@ -142,43 +146,18 @@ $(".update-graph").on("click", function () {
 
   createBarChart(testData, testOptions, testElement);
 });
-// // setting bar colours
-// function changeBarColor() {
-//   let color;
-//   $("#colorPicker").on("click", function () {
-//     color = $("#colorPicker").val();
-//   });
-//   $(".setColor").on("click", function () {
-//     $(".bar").css("background", color);
-//   });
-// }
 
-// // reset graphs on click
-// $(".removeAll").on("click", function () {
-//   $(".yAxisContainer").empty();
-//   $(".xAxisContainer").empty();
+// setting bar colours
+$(".setBarColor").on("click", function () {
+  testOptions["barColor"] = $("#colorPicker").val();
+  $(".single-bar").css("background", testOptions["barColor"]);
+});
 
-//   let newOptions = {
-//     title: $("#titleChange").val(),
-//     barColor: $("#colorPicker").val(),
-//     labels: $("#newLabel").val().split(","),
-//     width: $("#barWidth").val(),
-//     titleFontSize: $("#titleFontSize").val(),
-//     titleColor: $("#titleColor").val(),
-//   };
-
-//   let element = "#barChart";
-// let newData = $("#newData")
-//   .val()
-//   .split(",")
-//   .map(function (item) {
-//     return parseInt(item, 10);
-//   });
-// console.log(newData);
-// console.log(newOptions);
-
-//   createBarChart(newData, newOptions, element);
-// });
+// setting title colour
+$(".setColor").on("click", function () {
+  testOptions["titleColor"] = $("#titleColor").val();
+  $(".grid-title").css("color", testOptions["titleColor"]);
+});
 
 // // Options dropdown
 // let dropdownPresent = false;

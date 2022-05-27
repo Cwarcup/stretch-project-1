@@ -24,62 +24,67 @@
     <div id="grid-chart">
     </div>
     <div class="grid-options-container">
-      <div class="grid-options-container">
 
-        <div class="editValues">
-          <div class="single-option">
-            <div>Change Title</div>
-            <input type="text" id="titleVal" placeholder="Bar Chart Title" />
-            <button class="titleBtn">Change Title</button>
-          </div>
-
-          <div class="single-option">
-            <div>Remove Title</div>
-            <input type="checkbox" id="removeTitle" />
-          </div>
-
-          <div class="single-option">
-            <div>Enter New Data: </div>
-            <input type="text" id="newData" placeholder="10, 20, 30, 55, 23" />
-          </div>
-
-          <div class="single-option">
-            <div>Interval size: </div>
-            <input type="number" id="tickInterval" placeholder="10" />
-          </div>
-
-          <div class="single-option">
-            <label>Title Size: </label>
-            <select id="titleSize">
-              <option value="1.5"></option>
-              <option value="1em">Small</option>
-              <option value="2.5em">Medium</option>
-              <option value="3.5em">Large</option>
-
-            </select>
-
-          </div>
-          <div class="single-option">
-            <button class="update-graph">Update</button>
-          </div>
+      <div class="options left">
+        <div class="single-option">
+          <div>Change Title</div>
+          <input type="text" id="titleVal" placeholder="Bar Chart Title" />
+          <button class="titleBtn">Change Title</button>
         </div>
 
-        <div class="EditStyle">
-          <div class="single-option">
-            <div>Change Bar Colour</div>
-            <input type="color" value="#e66465" id="colorPicker" />
-            <button class="setColor">Set Colour</button>
-          </div>
+        <div class="single-option">
+          <div>Remove Title</div>
+          <input type="checkbox" id="removeTitle" />
+        </div>
 
-          <div class="single-option">
-            <div>Title Colour</div>
-            <input type="color" value="#000000" id="titleColor" />
-          </div>
+        <div class="single-option">
+          <div>Enter New Data: </div>
+          <input type="text" id="newData" placeholder="10, 20, 30, 55, 23" />
+        </div>
 
-          <div class="single-option">
-            <div>Title Size</div>
-            <input type="number" id="titleFontSize" min="1" max="200" />
-          </div>
+        <div class="single-option">
+          <div>Interval size: </div>
+          <input type="number" id="tickInterval" placeholder="10" />
+        </div>
+
+        <div class="single-option">
+          <label>Title Size: </label>
+          <select id="titleSize">
+            <option value="1.5"></option>
+            <option value="1em">Small</option>
+            <option value="2.5em">Medium</option>
+            <option value="3.5em">Large</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="options middle">
+        <div class="single-option">
+          <div>Change Bar Colour</div>
+          <input type="color" value="#354259" id="colorPicker" />
+          <button class="setBarColor">Set Colour</button>
+        </div>
+
+        <div class="single-option">
+          <div>Title Colour</div>
+          <input type="color" value="#000000" id="titleColor" />
+          <button class="setTitleColor">Set Colour</button>
+        </div>
+
+        <div class="single-option">
+          <label>Bar Gap Size: </label>
+          <select id="gapSize">
+            <option value="100px"></option>
+            <option value="0px">No gap</option>
+            <option value="25px">Small</option>
+            <option value="75px">Medium</option>
+            <option value="125px">Large</option>
+          </select>
+        </div>
+      </div>
+      <div class="options right">
+        <div class="single-option">
+          <button class="update-graph">Update</button>
         </div>
       </div>
     </div>
