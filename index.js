@@ -154,7 +154,7 @@ $(".setBarColor").on("click", function () {
 });
 
 // setting title colour
-$(".setColor").on("click", function () {
+$(".setTitleColor").on("click", function () {
   testOptions["titleColor"] = $("#titleColor").val();
   $(".grid-title").css("color", testOptions["titleColor"]);
 });
