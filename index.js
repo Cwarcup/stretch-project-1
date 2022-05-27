@@ -126,6 +126,9 @@ $(".update-graph").on("click", function () {
   if (didItChange("#tickInterval")) {
     testOptions["tickInterval"] = parseInt($("#tickInterval").val());
   }
+  if (didItChange("#newLabels")) {
+    testOptions["labels"] = $("#newLabels").val().split(", ");
+  }
 
   if (didItChange("#titleSize")) {
     testOptions["titleFontSize"] = $("#titleSize").val();
