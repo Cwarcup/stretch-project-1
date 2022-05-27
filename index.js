@@ -1,8 +1,8 @@
-let testData = [10, 20, 30, 55, 23];
+let testData = [10, 35, 22, 55, 12];
 let testOptions = {
   title: "Test Bar Chart",
   barColor: "#00ADB5",
-  labels: ["One", "Two", "three"],
+  labels: ["Dog", "Cat", "Fish", "Monkey", "Human"],
   titleFontSize: "1.5em",
   titleColor: "#222831",
   tickInterval: 10,
@@ -36,6 +36,10 @@ const createBarChart = (data, options, element) => {
       grid-column: ${colStart} / ${colEnd}; 
       grid-row: ${startingRow - data[i]} / ${maxValue + 2};
       '></div>
+      <div class='dataLabel' style=' 
+      grid-column: ${colStart} / ${colEnd}; 
+      grid-row: ${maxValue + 2};
+      '>${labels[i]}</div>
       `
     );
     colStart++;
