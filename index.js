@@ -211,6 +211,11 @@ let stackedData = {
       data1: 20,
       data2: 30,
     },
+    {
+      label: "Mar",
+      data1: 5,
+      data2: 30,
+    },
   ],
   options: {
     title: "Test Bar Chart",
@@ -254,10 +259,8 @@ const createStackedChart = function (data) {
   let colStart = 2;
   let colEnd = 3;
   let startingRow = maxValueCombined + 2;
-  // for (let i = 0; i < numOfBars; i++) {
   for (let item of dataPoints) {
-    console.log(item["data1"]);
-    console.log(item["data2"]);
+    let start = startingRow - item["data1"];
     $("#stacked-grid").append(
       `
       <div class='lowerBar' id='${item["data1"]}' value='${item["data1"]}'
@@ -270,6 +273,19 @@ const createStackedChart = function (data) {
       grid-column: ${colStart} / ${colEnd};
       grid-row: ${maxValueCombined + 2};
       '>${item["label"]}</div>
+      
+      <div class='upperBar' id='${item["data2"]}' value='${item["data2"]}'
+      style='
+        background: red;
+        grid-column: ${colStart} / ${colEnd};
+        grid-row: ${start - item["data2"]} / ${start + 2};
+        '></div>
+      <div class='dataLabel' style='
+      grid-column: ${colStart} / ${colEnd};
+      grid-row: ${maxValueCombined + 2};
+      '>${item["label"]}</div>
+
+      
       `
     );
     colStart++;
@@ -289,9 +305,6 @@ const createStackedChart = function (data) {
   //   '>${labels[i]}</div>
   //   `
   // );
-  colStart++;
-  colEnd++;
-  // }
 };
 
 createStackedChart(stackedData);
