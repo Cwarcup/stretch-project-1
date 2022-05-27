@@ -192,3 +192,58 @@ $(".grid-title").hover(
     clearTimeout(setTimeoutConst);
   }
 );
+
+let stackedData = {
+  appendElement: "stacked-grid",
+  dataPoints: [
+    {
+      label: "Jan",
+      data1: 10,
+      data2: 20,
+    },
+    {
+      label: "Feb",
+      data1: 15,
+      data2: 25,
+    },
+    {
+      label: "Mar",
+      data1: 20,
+      data2: 30,
+    },
+  ],
+  options: {
+    title: "Test Bar Chart",
+    barColor: "#00ADB5",
+    titleFontSize: "1.5em",
+    titleColor: "#eeeeee",
+    tickInterval: 10,
+    gapSize: "10%",
+  },
+};
+
+const createStackedChart = function (data) {
+  const { dataPoints, options } = data;
+
+  let numOfBars = dataPoints.length;
+  let maxValueCombined = getMaxValueCombined(dataPoints);
+
+  // fn to get max value of any combined data points
+  function getMaxValueCombined(data) {
+    let maxVal = 0;
+    for (let i = 0; i < data.length; i++) {
+      if (data[i]["data1"] + data[i]["data2"] > maxVal) {
+        maxVal = data[i]["data1"] + data[i]["data2"];
+      }
+    }
+    return maxVal;
+  }
+
+  // create rows and cols for grid
+  $("#stacked-grid").css({
+    "grid-template-columns": `1fr repeat(${numOfBars + 1}, 1fr)`,
+    "grid-template-rows": `repeat(${maxValueCombined * 2}, auto) 20px`,
+  });
+};
+
+createStackedChart(stackedData);

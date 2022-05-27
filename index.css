@@ -9,7 +9,8 @@ html {
 
 body {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 #grid-container {
@@ -135,4 +136,26 @@ button {
 button:hover {
   background-color: #00adb5; /* Green */
   color: #393e46;
+}
+
+/* stacked grid */
+
+#stacked-container {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  background-color: #393e46;
+  border-radius: 5px;
+}
+
+#stacked-grid {
+  display: grid;
+  height: auto;
+  min-height: 300px;
+  max-height: 600px;
+  background-color: #eeeeee;
+  color: #393e46;
+  padding: 2em 2em 0.5em 2em;
+  border-left: 1px solid #393e46;
+  border-right: 1px solid #393e46;
 }
