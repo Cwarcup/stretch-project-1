@@ -4,9 +4,9 @@ let testOptions = {
   barColor: "#00ADB5",
   labels: ["Dog", "Cat", "Fish", "Monkey", "Human"],
   titleFontSize: "1.5em",
-  titleColor: "#222831",
+  titleColor: "#eeeeee",
   tickInterval: 10,
-  gapSize: "100px",
+  gapSize: "10%",
 };
 let testElement = "#grid-chart";
 
@@ -17,7 +17,7 @@ const createBarChart = (data, options, element) => {
 
   // create rows and cols for grid
   $("#grid-chart").css({
-    "grid-template-columns": `50px repeat(${numOfBars + 1}, auto`,
+    "grid-template-columns": `1fr repeat(${numOfBars + 1}, 1fr)`,
     "grid-template-rows": `repeat(${maxValue}, auto) 20px`,
   });
 

@@ -4,7 +4,7 @@
 
 html {
   scroll-behavior: smooth;
-  background-color: #eeeeee;
+  background-color: #222831;
 }
 
 body {
@@ -16,7 +16,8 @@ body {
   display: flex;
   flex-direction: column;
   width: 90%;
-  background-color: #c2ded1;
+  background-color: #393e46;
+  border-radius: 5px;
 }
 
 .grid-title {
@@ -34,8 +35,8 @@ body {
   background-color: #eeeeee;
   color: #393e46;
   padding: 2em 2em 0.5em 2em;
-  border-left: 1px solid #393e4663;
-  border-right: 1px solid #393e4663;
+  border-left: 1px solid #393e46;
+  border-right: 1px solid #393e46;
 }
 
 .single-bar {
@@ -45,7 +46,7 @@ body {
 
 .grid-options-container {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
   color: #393e46;
   padding-top: 1em;
@@ -66,7 +67,7 @@ body {
 }
 
 .update-graph {
-  border: 2px solid #00adb5;
+  border: 2px solid #393e46;
   color: #393e46;
   padding: 16px 32px;
   text-align: center;
@@ -80,7 +81,6 @@ body {
 
 .update-graph:hover {
   background-color: #00adb5; /* Green */
-  color: #eeeeee;
 }
 
 label {
@@ -111,9 +111,9 @@ select {
 }
 
 button {
-  border: 1px solid #00adb5;
-  color: #eeeeee;
-  background-color: #00adb5;
+  border: 1px solid #393e46;
+  color: #393e46;
+  background-color: #eeeeee;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -124,6 +124,6 @@ button {
 }
 
 button:hover {
-  background-color: #eeeeee; /* Green */
+  background-color: #00adb5; /* Green */
   color: #393e46;
 }
