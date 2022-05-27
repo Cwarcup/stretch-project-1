@@ -73,6 +73,7 @@ const createBarChart = (data, options, element) => {
 };
 createBarChart(testData, testOptions, testElement);
 
+//clear input field
 const clearInput = function (selector) {
   $(selector).val("");
 };
@@ -84,6 +85,7 @@ const titleChange = function () {
   clearInput("#titleVal");
 };
 
+// change title btn
 $(".titleBtn").on("click", function () {
   titleChange();
 });
@@ -97,6 +99,7 @@ $("input[type=checkbox]").change(function () {
   }
 });
 
+// check to see if a input field has changed
 const didItChange = function (selector) {
   let newVal = $(selector).val();
   if (newVal === "") {
@@ -106,8 +109,9 @@ const didItChange = function (selector) {
   }
 };
 
-const updateGraph = function (newData, newOptions, testElement) {};
+// const updateGraph = function (newData, newOptions, testElement) {};
 
+// update graph with any options that have been changed
 $(".update-graph").on("click", function () {
   // check for new title
   if (didItChange("#titleVal")) {
@@ -116,7 +120,7 @@ $(".update-graph").on("click", function () {
 
   if (didItChange("#newData")) {
     $(".single-bar").empty();
-    testOptions["testData"] = $("#newData")
+    testData = $("#newData")
       .val()
       .split(",")
       .map(function (item) {
@@ -129,6 +133,9 @@ $(".update-graph").on("click", function () {
   // }
 
   console.log(testOptions);
+  console.log(testData);
+
+  $("#grid-chart").empty();
 
   createBarChart(testData, testOptions, testElement);
 });
