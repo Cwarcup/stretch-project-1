@@ -128,9 +128,9 @@ $(".update-graph").on("click", function () {
       });
   }
 
-  // if (didItChange("#tickInterval")) {
-  //   tickInterval = $("#tickInterval").val();
-  // }
+  if (didItChange("#tickInterval")) {
+    testOptions["tickInterval"] = parseInt($("#tickInterval").val());
+  }
 
   console.log(testOptions);
   console.log(testData);
