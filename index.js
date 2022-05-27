@@ -319,12 +319,19 @@ createStackedChart(stackedData);
 $("#update-stacked-graph").on("click", function () {
   let { dataPoints, options } = stackedData;
   // check for data1 updates
-  if (didItChange("#data1")) {
+  if (didItChange("#data1") && didItChange("#data2")) {
     $("#stacked-grid").empty();
-
-    // get new data 1 into each data object
-    let newStackedData1 = getDataPoints(dataPoints, "data1");
+    getDataPoints(dataPoints, "#data1");
+    getDataPoints(dataPoints, "#data2");
+    createStackedChart(stackedData);
+  } else if (didItChange("#data1")) {
+    $("#stacked-grid").empty();
+    getDataPoints(dataPoints, "#data1");
     console.log(stackedData);
+    createStackedChart(stackedData);
+  } else if (didItChange("#data2")) {
+    $("#stacked-grid").empty();
+    getDataPoints(dataPoints, "#data2");
     createStackedChart(stackedData);
   }
 });
@@ -332,8 +339,8 @@ $("#update-stacked-graph").on("click", function () {
 const getDataPoints = function (dataArr, dataSub) {
   let index = 0;
   for (let item of dataArr) {
-    let newVal = parseInt($("#data1").val().split(",")[index]);
-    item["" + `${dataSub}` + ""] = newVal;
+    let newVal = parseInt($(dataSub).val().split(",")[index]);
+    item["" + `${dataSub.slice(1)}` + ""] = newVal;
     index++;
   }
 };
