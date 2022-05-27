@@ -80,7 +80,6 @@ const clearInput = function (selector) {
 
 // update title
 const titleChange = function () {
-  console.log("title changed");
   $(".grid-title").text($("#titleVal").val());
   clearInput("#titleVal");
 };
@@ -102,7 +101,7 @@ $("input[type=checkbox]").change(function () {
 // check to see if a input field has changed
 const didItChange = function (selector) {
   let newVal = $(selector).val();
-  if (newVal === "") {
+  if (newVal === "" || newVal === undefined) {
     return false;
   } else {
     return true;
@@ -130,6 +129,10 @@ $(".update-graph").on("click", function () {
 
   if (didItChange("#tickInterval")) {
     testOptions["tickInterval"] = parseInt($("#tickInterval").val());
+  }
+
+  if (didItChange("#titleSize")) {
+    testOptions["titleFontSize"] = $("#titleSize").val();
   }
 
   console.log(testOptions);

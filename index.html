@@ -29,7 +29,7 @@
         <div class="editValues">
           <div class="single-option">
             <div>Change Title</div>
-            <input type="text" id="titleVal" />
+            <input type="text" id="titleVal" placeholder="Bar Chart Title" />
             <button class="titleBtn">Change Title</button>
           </div>
 
@@ -40,12 +40,24 @@
 
           <div class="single-option">
             <div>Enter New Data: </div>
-            <input type="text" id="newData" placeholder="1, 2, 3, 4" />
+            <input type="text" id="newData" placeholder="10, 20, 30, 55, 23" />
           </div>
 
           <div class="single-option">
             <div>Interval size: </div>
             <input type="number" id="tickInterval" placeholder="10" />
+          </div>
+
+          <div class="single-option">
+            <label>Title Size: </label>
+            <select id="titleSize">
+              <option value="1.5"></option>
+              <option value="1em">Small</option>
+              <option value="2.5em">Medium</option>
+              <option value="3.5em">Large</option>
+
+            </select>
+
           </div>
           <div class="single-option">
             <button class="update-graph">Update</button>
