@@ -3,21 +3,23 @@ let testOptions = {
   title: "Test Bar Chart",
   barColor: "#354259",
   labels: ["One", "Two", "three"],
-  // width: "15",
-  // height: "400px",
   titleFontSize: "1.5em",
   titleColor: "#354259",
-  // valuePosition: "middle",
-  // barSpacing: "80%",
-  // stacked: false,
-  // barColor: "red",
   tickInterval: 10,
   gapSize: "100px",
 };
 let testElement = "#grid-chart";
 
 const createBarChart = (data, options, element) => {
-  const { title, barColor, labels, tickInterval, gapSize } = options;
+  const {
+    title,
+    barColor,
+    labels,
+    tickInterval,
+    gapSize,
+    titleFontSize,
+    titleColor,
+  } = options;
   let numOfBars = data.length;
   let maxValue = Math.max(...data);
 
@@ -95,50 +97,54 @@ $("input[type=checkbox]").change(function () {
   }
 });
 
+const didItChange = function (selector) {
+  let newVal = $(selector).val();
+  if (newVal === "") {
+    return false;
+  } else {
+    return true;
+  }
+};
+
+const updateGraph = function (newData, newOptions, testElement) {};
+
+$(".update-graph").on("click", function () {
+  // check for new title
+  if (didItChange("#titleVal")) {
+    testOptions["title"] = $("#titleVal").val();
+  }
+
+  if (didItChange("#newData")) {
+    $(".single-bar").empty();
+    testOptions["testData"] = $("#newData")
+      .val()
+      .split(",")
+      .map(function (item) {
+        return parseInt(item, 10);
+      });
+  }
+
+  // if (didItChange("#tickInterval")) {
+  //   tickInterval = $("#tickInterval").val();
+  // }
+
+  console.log(testOptions);
+
+  createBarChart(testData, testOptions, testElement);
+});
 // // setting bar colours
-function changeBarColor() {
-  let color;
-
-  $("#colorPicker").on("click", function () {
-    color = $("#colorPicker").val();
-  });
-  $(".setColor").on("click", function () {
-    $(".bar").css("background", color);
-  });
-}
-
-// // silly hidden delay when hovering over title
-// let delay = 5000,
-//   setTimeoutConst;
-// $(".title").hover(
-//   function () {
-//     setTimeoutConst = setTimeout(function () {
-//       $(".title").text("🚀");
-//     }, delay);
-//   },
-//   function () {
-//     clearTimeout(setTimeoutConst);
-//   }
-// );
-
-// remove title
-// $("input[type=checkbox]").change(function () {
-//   if (this.checked) {
-//     $(".title").attr("hidden", "true");
-//   } else {
-//     $(".title").removeAttr("hidden");
-//   }
-// });
-
-// $(".addValueBtn").on("click", function () {
-//   testData.push($("#addValue").val());
-// });
-
-// initial setup with test data
+// function changeBarColor() {
+//   let color;
+//   $("#colorPicker").on("click", function () {
+//     color = $("#colorPicker").val();
+//   });
+//   $(".setColor").on("click", function () {
+//     $(".bar").css("background", color);
+//   });
+// }
 
 // // reset graphs on click
 // $(".removeAll").on("click", function () {
-
 //   $(".yAxisContainer").empty();
 //   $(".xAxisContainer").empty();
 
@@ -152,14 +158,14 @@ function changeBarColor() {
 //   };
 
 //   let element = "#barChart";
-//   let newData = $("#newData")
-//     .val()
-//     .split(",")
-//     .map(function (item) {
-//       return parseInt(item, 10);
-//     });
-//   console.log(newData);
-//   console.log(newOptions);
+// let newData = $("#newData")
+//   .val()
+//   .split(",")
+//   .map(function (item) {
+//     return parseInt(item, 10);
+//   });
+// console.log(newData);
+// console.log(newOptions);
 
 //   createBarChart(newData, newOptions, element);
 // });
@@ -176,3 +182,17 @@ function changeBarColor() {
 //     dropdownPresent = false;
 //   }
 // });
+
+// silly hidden delay when hovering over title
+let delay = 1000,
+  setTimeoutConst;
+$(".grid-title").hover(
+  function () {
+    setTimeoutConst = setTimeout(function () {
+      $(".grid-title").text("To The Moon 🚀");
+    }, delay);
+  },
+  function () {
+    clearTimeout(setTimeoutConst);
+  }
+);
