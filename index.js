@@ -425,3 +425,16 @@ $(".lowerBarBtn").on("click", function () {
 $(".upperBarBtn").on("click", function () {
   $(".upperBar").css("background", $("#upperBarColor").val());
 });
+
+$(".stackedTitleBtn").on("click", function () {
+  $("#stacked-title").text($("#stackedTitleVal").val());
+});
+
+// remove title
+$("#stackedCheckbox").change(function () {
+  if (this.checked) {
+    $("#stacked-title").text("");
+  } else {
+    $("#stacked-title").text("Stacked Bar Chart");
+  }
+});
