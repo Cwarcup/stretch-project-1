@@ -212,7 +212,7 @@ let stackedData = {
   ],
   options: {
     title: "Stacked Bar Chart",
-    barColor: "#00ADB5",
+    lowerBarColor: "#00ADB5",
     titleFontSize: "1.5em",
     titleColor: "#eeeeee",
     tickInterval: 10,
@@ -352,8 +352,8 @@ $("#update-stacked-graph").on("click", function () {
     options["titleFontSize"] = $("#stackedTitleSize").val();
   }
 
-  if (didItChange("#stackedColorPicker")) {
-    options["barColor"] = $("#stackedColorPicker").val();
+  if (didItChange("#lowerBarColor")) {
+    options["lowerBarColor"] = $("#lowerBarColor").val();
   }
 
   if (didItChange("#stackedTitleColor")) {
@@ -367,7 +367,7 @@ $("#update-stacked-graph").on("click", function () {
   if (didItChange("#stackedTitleVal")) {
     options["title"] = $("#stackedTitleVal").val();
   }
-  console.log(stackedData);
+
   $("#stacked-grid").empty();
   createStackedChart(stackedData);
 });
@@ -403,3 +403,13 @@ const getLabels = function (dataArr) {
     index++;
   }
 };
+
+// title color btn
+$(".stackedTitleColorBtn").on("click", function () {
+  $("#stacked-title").css("color", $("#stackedTitleColor").val());
+});
+
+// lower bar color
+$(".lowerBarBtn").on("click", function () {
+  $("#stacked-title").css("color", $("#stackedTitleColor").val());
+});
