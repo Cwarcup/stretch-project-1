@@ -329,9 +329,14 @@ createStackedChart(stackedData);
 $("#update-stacked-graph").on("click", function () {
   let { dataPoints, options } = stackedData;
   // check for data1 and data2 updates
-  if (didItChange("#data1") && didItChange("#data2")) {
+  if (
+    didItChange("#data1") &&
+    didItChange("#data2") &&
+    didItChange("#stackedLabels")
+  ) {
     getDataPoints(dataPoints, "#data1");
     getDataPoints(dataPoints, "#data2");
+    getLabels(dataPoints);
     $("#stacked-grid").empty();
     createStackedChart(stackedData);
     // check for only data1 updates
@@ -356,7 +361,6 @@ $("#update-stacked-graph").on("click", function () {
 
 const getDataPoints = function (dataArr, dataSub) {
   let newDataLength = $(dataSub).val().split(",").length;
-  console.log(dataArr);
 
   if (newDataLength > dataArr.length) {
     dataArr.push(Object.create(dataPoint));
@@ -371,13 +375,18 @@ const getDataPoints = function (dataArr, dataSub) {
   }
 };
 
-const getLabels = function (dataPoints) {
+const getLabels = function (dataArr) {
+  let newLabelLength = $("#stackedLabels").val().split(",").length;
+
+  if (newLabelLength > dataArr.length) {
+    dataArr.push(Object.create(dataPoint));
+  }
+
   let index = 0;
-  for (let item of dataPoints) {
-    console.log("label from data: " + item["label"]);
+  for (let label of dataArr) {
     let newLabel = $("#stackedLabels").val().split(",")[index];
-    item["label"] = newLabel;
-    console.log("new label is: " + item["label"]);
+    label["label"] = newLabel;
+
     index++;
   }
 };
