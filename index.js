@@ -359,11 +359,7 @@ const getDataPoints = function (dataArr, dataSub) {
   console.log(dataArr);
 
   if (newDataLength > dataArr.length) {
-    const obj = Object.create(dataPoint);
-    obj.label = "data";
-    obj.data1 = 0;
-    obj.data2 = 0;
-    dataArr.push(obj);
+    dataArr.push(Object.create(dataPoint));
   }
 
   let index = 0;
