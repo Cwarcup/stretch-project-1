@@ -220,15 +220,6 @@ let stackedData = {
   },
 };
 
-// class for creating new dataPoint
-// class DataPoint {
-//   constructor(label = "Data", data1 = 0, data2 = 0) {
-//     this.label = label;
-//     this.data1 = data1;
-//     this.data2 = data2;
-//   }
-// }
-
 const dataPoint = {
   label: "Data",
   data1: 0,
@@ -327,8 +318,9 @@ createStackedChart(stackedData);
 
 // update graph with any options that have been changed
 $("#update-stacked-graph").on("click", function () {
+  console.log($("#stackedGapSize").val());
   let { dataPoints, options } = stackedData;
-  // check for data1 and data2 updates
+  // check for data1 and data2 and label updates
   if (
     didItChange("#data1") &&
     didItChange("#data2") &&
@@ -337,26 +329,47 @@ $("#update-stacked-graph").on("click", function () {
     getDataPoints(dataPoints, "#data1");
     getDataPoints(dataPoints, "#data2");
     getLabels(dataPoints);
-    $("#stacked-grid").empty();
-    createStackedChart(stackedData);
+
     // check for only data1 updates
   } else if (didItChange("#data1")) {
     getDataPoints(dataPoints, "#data1");
-    $("#stacked-grid").empty();
-    createStackedChart(stackedData);
+
     // check for only data2 updates
   } else if (didItChange("#data2")) {
     getDataPoints(dataPoints, "#data2");
-    $("#stacked-grid").empty();
-    createStackedChart(stackedData);
 
     // label change
   } else if (didItChange("#stackedLabels")) {
     getLabels(dataPoints);
-    $("#stacked-grid").empty();
-    createStackedChart(stackedData);
+  }
+
+  // y axis intervals
+  if (didItChange("#stackTickInterval")) {
+    options["tickInterval"] = parseInt($("#stackTickInterval").val());
+  }
+
+  if (didItChange("#stackedTitleSize")) {
+    options["titleFontSize"] = $("#stackedTitleSize").val();
+  }
+
+  if (didItChange("#stackedColorPicker")) {
+    options["barColor"] = $("#stackedColorPicker").val();
+  }
+
+  if (didItChange("#stackedTitleColor")) {
+    options["titleColor"] = $("#stackedTitleColor").val();
+  }
+
+  if (didItChange("#stackedGapSize")) {
+    options["gapSize"] = $("#stackedGapSize").val();
+  }
+
+  if (didItChange("#stackedTitleVal")) {
+    options["title"] = $("#stackedTitleVal").val();
   }
   console.log(stackedData);
+  $("#stacked-grid").empty();
+  createStackedChart(stackedData);
 });
 
 const getDataPoints = function (dataArr, dataSub) {
