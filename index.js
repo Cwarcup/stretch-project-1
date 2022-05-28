@@ -213,7 +213,7 @@ let stackedData = {
   options: {
     title: "Stacked Bar Chart",
     lowerBarColor: "#00ADB5",
-    upperBarColor: "red",
+    upperBarColor: "#4287f5",
     titleFontSize: "1.5em",
     titleColor: "#eeeeee",
     tickInterval: 10,
@@ -419,5 +419,9 @@ $(".stackedTitleColorBtn").on("click", function () {
 
 // lower bar color
 $(".lowerBarBtn").on("click", function () {
-  $("#stacked-title").css("color", $("#stackedTitleColor").val());
+  $(".lowerBar").css("background", $("#lowerBarColor").val());
+});
+// upper bar color
+$(".upperBarBtn").on("click", function () {
+  $(".upperBar").css("background", $("#upperBarColor").val());
 });
