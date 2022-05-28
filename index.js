@@ -213,6 +213,7 @@ let stackedData = {
   options: {
     title: "Stacked Bar Chart",
     lowerBarColor: "#00ADB5",
+    upperBarColor: "red",
     titleFontSize: "1.5em",
     titleColor: "#eeeeee",
     tickInterval: 10,
@@ -228,8 +229,15 @@ const dataPoint = {
 
 const createStackedChart = function (data) {
   const { dataPoints, options } = data;
-  const { title, barColor, titleFontSize, titleColor, tickInterval, gapSize } =
-    options;
+  const {
+    title,
+    lowerBarColor,
+    upperBarColor,
+    titleFontSize,
+    titleColor,
+    tickInterval,
+    gapSize,
+  } = options;
 
   let numOfBars = dataPoints.length;
   let maxValueCombined = getMaxValueCombined(dataPoints);
@@ -264,7 +272,7 @@ const createStackedChart = function (data) {
       `
       <div class='lowerBar' id='${item["data1"]}' value='${item["data1"]}'
       style='
-        background: ${barColor};
+        background: ${lowerBarColor};
         grid-column: ${colStart} / ${colEnd};
         grid-row: ${startingRow - item["data1"]} / ${maxValueCombined + 2};
         '></div>
@@ -275,7 +283,7 @@ const createStackedChart = function (data) {
       
       <div class='upperBar' id='${item["data2"]}' value='${item["data2"]}'
       style='
-        background: red;
+        background: ${upperBarColor};
         grid-column: ${colStart} / ${colEnd};
         grid-row: ${start - item["data2"]} / ${start + 2};
         '></div>
