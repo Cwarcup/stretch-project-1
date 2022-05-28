@@ -209,11 +209,6 @@ let stackedData = {
       data1: 20,
       data2: 30,
     },
-    {
-      label: "Mar",
-      data1: 5,
-      data2: 80,
-    },
   ],
   options: {
     title: "Stacked Bar Chart",
@@ -223,6 +218,21 @@ let stackedData = {
     tickInterval: 10,
     gapSize: "10%",
   },
+};
+
+// class for creating new dataPoint
+// class DataPoint {
+//   constructor(label = "Data", data1 = 0, data2 = 0) {
+//     this.label = label;
+//     this.data1 = data1;
+//     this.data2 = data2;
+//   }
+// }
+
+const dataPoint = {
+  label: "Data",
+  data1: 0,
+  data2: 0,
 };
 
 const createStackedChart = function (data) {
@@ -318,36 +328,60 @@ createStackedChart(stackedData);
 // update graph with any options that have been changed
 $("#update-stacked-graph").on("click", function () {
   let { dataPoints, options } = stackedData;
-  // check for data1 updates
+  // check for data1 and data2 updates
   if (didItChange("#data1") && didItChange("#data2")) {
-    $("#stacked-grid").empty();
     getDataPoints(dataPoints, "#data1");
     getDataPoints(dataPoints, "#data2");
+    $("#stacked-grid").empty();
     createStackedChart(stackedData);
+    // check for only data1 updates
   } else if (didItChange("#data1")) {
-    $("#stacked-grid").empty();
     getDataPoints(dataPoints, "#data1");
-    console.log(stackedData);
-    createStackedChart(stackedData);
-  } else if (didItChange("#data2")) {
     $("#stacked-grid").empty();
+    createStackedChart(stackedData);
+    // check for only data2 updates
+  } else if (didItChange("#data2")) {
     getDataPoints(dataPoints, "#data2");
+    $("#stacked-grid").empty();
+    createStackedChart(stackedData);
+
+    // label change
+  } else if (didItChange("#stackedLabels")) {
+    getLabels(dataPoints);
+    $("#stacked-grid").empty();
     createStackedChart(stackedData);
   }
+  console.log(stackedData);
 });
 
 const getDataPoints = function (dataArr, dataSub) {
+  let newDataLength = $(dataSub).val().split(",").length;
+  console.log(dataArr);
+
+  if (newDataLength > dataArr.length) {
+    const obj = Object.create(dataPoint);
+    obj.label = "data";
+    obj.data1 = 0;
+    obj.data2 = 0;
+    dataArr.push(obj);
+  }
+
   let index = 0;
   for (let item of dataArr) {
     let newVal = parseInt($(dataSub).val().split(",")[index]);
+    console.log("" + `${dataSub.slice(1)}` + "");
     item["" + `${dataSub.slice(1)}` + ""] = newVal;
     index++;
   }
 };
 
-// dataPoints: [
-//   {
-//     label: "Jan",
-//     data1: 10,
-//     data2: 20,
-//   },
+const getLabels = function (dataPoints) {
+  let index = 0;
+  for (let item of dataPoints) {
+    console.log("label from data: " + item["label"]);
+    let newLabel = $("#stackedLabels").val().split(",")[index];
+    item["label"] = newLabel;
+    console.log("new label is: " + item["label"]);
+    index++;
+  }
+};
