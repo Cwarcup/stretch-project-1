@@ -1,5 +1,5 @@
-let testData = [10, 35, 22, 55, 12];
-let testOptions = {
+let defaultData = [10, 35, 22, 55, 12];
+let defaultOptions = {
   title: "Test Bar Chart",
   barColor: "#00ADB5",
   labels: ["Dog", "Cat", "Fish", "Monkey", "Human"],
@@ -8,7 +8,7 @@ let testOptions = {
   tickInterval: 10,
   gapSize: "10%",
 };
-let testElement = "#grid-chart";
+let defaultElement = "#grid-chart";
 
 const createBarChart = (data, options, element) => {
   const { title, barColor, labels, tickInterval, gapSize } = options;
@@ -62,12 +62,13 @@ const createBarChart = (data, options, element) => {
 
   // set title
   $(".grid-title").text(title);
-  $(".grid-title").css("color", `${testOptions.titleColor}`);
-  $(".grid-title").css("font-size", `${testOptions.titleFontSize}`);
+  $(".grid-title").css("color", `${defaultOptions.titleColor}`);
+  $(".grid-title").css("font-size", `${defaultOptions.titleFontSize}`);
 
   // end of initial setup
 };
-createBarChart(testData, testOptions, testElement);
+
+createBarChart(defaultData, defaultOptions, defaultElement);
 
 //clear input field
 const clearInput = function (selector) {
@@ -108,12 +109,12 @@ const didItChange = function (selector) {
 $(".update-graph").on("click", function () {
   // check for new title
   if (didItChange("#titleVal")) {
-    testOptions["title"] = $("#titleVal").val();
+    defaultOptions["title"] = $("#titleVal").val();
   }
 
   if (didItChange("#newData")) {
     $(".single-bar").empty();
-    testData = $("#newData")
+    defaultData = $("#newData")
       .val()
       .split(",")
       .map(function (item) {
@@ -122,46 +123,43 @@ $(".update-graph").on("click", function () {
   }
 
   if (didItChange("#tickInterval")) {
-    testOptions["tickInterval"] = parseInt($("#tickInterval").val());
+    defaultOptions["tickInterval"] = parseInt($("#tickInterval").val());
   }
   if (didItChange("#newLabels")) {
-    testOptions["labels"] = $("#newLabels").val().split(", ");
+    defaultOptions["labels"] = $("#newLabels").val().split(", ");
   }
 
   if (didItChange("#titleSize")) {
-    testOptions["titleFontSize"] = $("#titleSize").val();
+    defaultOptions["titleFontSize"] = $("#titleSize").val();
   }
 
   if (didItChange("#colorPicker")) {
-    testOptions["barColor"] = $("#colorPicker").val();
+    defaultOptions["barColor"] = $("#colorPicker").val();
   }
 
   if (didItChange("#titleColor")) {
-    testOptions["titleColor"] = $("#titleColor").val();
+    defaultOptions["titleColor"] = $("#titleColor").val();
   }
 
   if (didItChange("#gapSize")) {
-    testOptions["gapSize"] = $("#gapSize").val();
+    defaultOptions["gapSize"] = $("#gapSize").val();
   }
-
-  console.log(testOptions);
-  console.log(testData);
 
   $("#grid-chart").empty();
 
-  createBarChart(testData, testOptions, testElement);
+  createBarChart(defaultData, defaultOptions, defaultElement);
 });
 
 // setting bar colours
 $(".setBarColor").on("click", function () {
-  testOptions["barColor"] = $("#colorPicker").val();
-  $(".single-bar").css("background", testOptions["barColor"]);
+  defaultOptions["barColor"] = $("#colorPicker").val();
+  $(".single-bar").css("background", defaultOptions["barColor"]);
 });
 
 // setting title colour
 $(".setTitleColor").on("click", function () {
-  testOptions["titleColor"] = $("#titleColor").val();
-  $(".grid-title").css("color", testOptions["titleColor"]);
+  defaultOptions["titleColor"] = $("#titleColor").val();
+  $(".grid-title").css("color", defaultOptions["titleColor"]);
 });
 
 // // Options dropdown
@@ -326,7 +324,6 @@ createStackedChart(stackedData);
 
 // update graph with any options that have been changed
 $("#update-stacked-graph").on("click", function () {
-  console.log($("#stackedGapSize").val());
   let { dataPoints, options } = stackedData;
   // check for data1 and data2 and label updates
   if (
@@ -390,7 +387,6 @@ const getDataPoints = function (dataArr, dataSub) {
   let index = 0;
   for (let item of dataArr) {
     let newVal = parseInt($(dataSub).val().split(",")[index]);
-    console.log("" + `${dataSub.slice(1)}` + "");
     item["" + `${dataSub.slice(1)}` + ""] = newVal;
     index++;
   }
