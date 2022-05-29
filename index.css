@@ -176,3 +176,8 @@ button:hover {
   color: #393e46;
   padding-top: 1em;
 }
+
+.upperBar {
+  width: auto;
+  border-radius: 0.5rem 0.5rem 0 0;
+}
