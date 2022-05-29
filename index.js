@@ -23,8 +23,6 @@ const createBarChart = (data, options, element) => {
 
   $("#grid-chart").css("grid-column-gap", `${gapSize}`);
 
-  // bar border color
-
   // add bars to gridchart between 2 / 3
   let colStart = 2;
   let colEnd = 3;
@@ -37,8 +35,6 @@ const createBarChart = (data, options, element) => {
       background: ${barColor}; 
       grid-column: ${colStart} / ${colEnd}; 
       grid-row: ${startingRow - data[i]} / ${maxValue + 2};
-      border: 1px solid ${LightenDarkenColor(barColor, -40)};
-      border-bottom: none;
       '></div>
       <div class='dataLabel' 
       style=' 
