@@ -36,7 +36,8 @@ const createBarChart = (data, options, element) => {
       grid-column: ${colStart} / ${colEnd}; 
       grid-row: ${startingRow - data[i]} / ${maxValue + 2};
       '></div>
-      <div class='dataLabel' style=' 
+      <div class='dataLabel' 
+      style=' 
       grid-column: ${colStart} / ${colEnd}; 
       grid-row: ${maxValue + 2};
       '>${labels[i]}</div>
@@ -60,43 +61,29 @@ const createBarChart = (data, options, element) => {
     maxRow -= tickInterval;
   }
 
-  // set title
-  $(".grid-title").text(title);
-  $(".grid-title").css("color", `${defaultOptions.titleColor}`);
-  $(".grid-title").css("font-size", `${defaultOptions.titleFontSize}`);
+  // set title defaults
+  $(".grid-title")
+    .text(title)
+    .css("color", `${defaultOptions.titleColor}`)
+    .css("font-size", `${defaultOptions.titleFontSize}`);
 
-  // end of initial setup
+  // end of initial setup fn
 };
 
+// initialize default single bar chart
 createBarChart(defaultData, defaultOptions, defaultElement);
 
-//clear input field
-const clearInput = function (selector) {
-  $(selector).val("");
-};
+// clear input field
+const clearInput = (selector) => $(selector).val("");
 
-// update title
-const titleChange = function (selector) {
+// update title fn
+const titleChange = (selector) => {
   $(selector).text($("#titleVal").val());
   clearInput("#titleVal");
 };
 
-// change title btn on single bar chart
-$(".titleBtn").on("click", function () {
-  titleChange(".grid-title");
-});
-
-// remove title
-$("input[type=checkbox]").change(function () {
-  if (this.checked) {
-    $(".grid-title").text("");
-  } else {
-    $(".grid-title").text("Bar Chart");
-  }
-});
-
 // check to see if a input field has changed
-const didItChange = function (selector) {
+const didItChange = (selector) => {
   let newVal = $(selector).val();
   if (newVal === "" || newVal === undefined) {
     return false;
@@ -105,13 +92,27 @@ const didItChange = function (selector) {
   }
 };
 
-// update graph with any options that have been changed
+// change title btn on single bar chart
+$(".titleBtn").on("click", function () {
+  titleChange(".grid-title");
+});
+
+// remove title checkbox
+$("input[type=checkbox]").change(function () {
+  if (this.checked) {
+    $(".grid-title").text("");
+  } else {
+    $(".grid-title").text("Bar Chart");
+  }
+});
+
+// update graph with any options that have been changed btn
 $(".update-graph").on("click", function () {
   // check for new title
   if (didItChange("#titleVal")) {
     defaultOptions["title"] = $("#titleVal").val();
   }
-
+  // check for new data
   if (didItChange("#newData")) {
     $(".single-bar").empty();
     defaultData = $("#newData")
@@ -162,21 +163,8 @@ $(".setTitleColor").on("click", function () {
   $(".grid-title").css("color", defaultOptions["titleColor"]);
 });
 
-// // Options dropdown
-// let dropdownPresent = false;
-// $(".options").hide();
-// $(".showOptions").on("click", function () {
-//   if (!dropdownPresent) {
-//     $(".options").fadeIn();
-//     dropdownPresent = true;
-//   } else {
-//     $(".options").fadeOut();
-//     dropdownPresent = false;
-//   }
-// });
-
-// silly hidden delay when hovering over title
-let delay = 1000,
+// Hover over title for hidden trick
+let delay = 2000,
   setTimeoutConst;
 $(".grid-title").hover(
   function () {
@@ -264,6 +252,7 @@ const createStackedChart = function (data) {
   let colStart = 2;
   let colEnd = 3;
   let startingRow = maxValueCombined + 2;
+
   for (let item of dataPoints) {
     let start = startingRow - item["data1"];
     $("#stacked-grid").append(
@@ -273,31 +262,35 @@ const createStackedChart = function (data) {
         background: ${lowerBarColor};
         grid-column: ${colStart} / ${colEnd};
         grid-row: ${startingRow - item["data1"]} / ${maxValueCombined + 2};
-        '></div>
-      <div class='dataLabel' style='
+        '>
+      </div>
+      <div class='dataLabel' 
+      style='
       grid-column: ${colStart} / ${colEnd};
       grid-row: ${maxValueCombined + 2};
-      '>${item["label"]}</div>
+      '>${item["label"]}
+      </div>
       
       <div class='upperBar' id='${item["data2"]}' value='${item["data2"]}'
       style='
         background: ${upperBarColor};
         grid-column: ${colStart} / ${colEnd};
         grid-row: ${start - item["data2"]} / ${start + 2};
-        '></div>
-      <div class='dataLabel' style='
+        '>
+      </div>
+      <div class='dataLabel' 
+      style='
       grid-column: ${colStart} / ${colEnd};
       grid-row: ${maxValueCombined + 2};
-      '>${item["label"]}</div>
-
-      
+      '>${item["label"]}
+      </div>
       `
     );
     colStart++;
     colEnd++;
   }
 
-  // y axis
+  // y axis stacked chart
   let maxRow = maxValueCombined;
   for (let i = 0; i <= maxValueCombined; i += tickInterval) {
     $("#stacked-grid").append(
@@ -312,11 +305,12 @@ const createStackedChart = function (data) {
   }
 
   // set title from data
-  $("#stacked-title").text(title);
-  $("#stacked-title").css("color", `${titleColor}`);
-  $("#stacked-title").css("font-size", `${titleFontSize}`);
+  $("#stacked-title")
+    .text(title)
+    .css("color", `${titleColor}`)
+    .css("font-size", `${titleFontSize}`);
 
-  // end of initial setup
+  // end of initial setup for stacked graph
 };
 
 // initialize stacked bar chart with default data
@@ -377,7 +371,8 @@ $("#update-stacked-graph").on("click", function () {
   createStackedChart(stackedData);
 });
 
-const getDataPoints = function (dataArr, dataSub) {
+// generic fn to get the data from a given data input
+const getDataPoints = (dataArr, dataSub) => {
   let newDataLength = $(dataSub).val().split(",").length;
 
   if (newDataLength > dataArr.length) {
@@ -392,7 +387,8 @@ const getDataPoints = function (dataArr, dataSub) {
   }
 };
 
-const getLabels = function (dataArr) {
+// fn to get labels from label input
+const getLabels = (dataArr) => {
   let newLabelLength = $("#stackedLabels").val().split(",").length;
 
   if (newLabelLength > dataArr.length) {
@@ -434,3 +430,16 @@ $("#stackedCheckbox").change(function () {
     $("#stacked-title").text("Stacked Bar Chart");
   }
 });
+
+// // Options dropdown
+// let dropdownPresent = false;
+// $(".options").hide();
+// $(".showOptions").on("click", function () {
+//   if (!dropdownPresent) {
+//     $(".options").fadeIn();
+//     dropdownPresent = true;
+//   } else {
+//     $(".options").fadeOut();
+//     dropdownPresent = false;
+//   }
+// });
