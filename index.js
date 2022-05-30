@@ -33,6 +33,7 @@ const createBarChart = (data, options, element) => {
       <div class='single-bar' id='${data[i]}' value='${data[i]}' 
       style='
       background: ${barColor}; 
+      border: 1px solid ${LightenDarkenColor(barColor, 50)};
       grid-column: ${colStart} / ${colEnd}; 
       grid-row: ${startingRow - data[i]} / ${maxValue + 2};
       '></div>
@@ -70,6 +71,9 @@ const createBarChart = (data, options, element) => {
   // end of initial setup fn
 };
 
+// initialize default single bar chart
+createBarChart(defaultData, defaultOptions, defaultElement);
+
 // dynamically change border color for a given hex
 function LightenDarkenColor(col, amt) {
   let usePound = false;
@@ -97,8 +101,6 @@ function LightenDarkenColor(col, amt) {
 
   return (usePound ? "#" : "") + (g | (b << 8) | (r << 16)).toString(16);
 }
-// initialize default single bar chart
-createBarChart(defaultData, defaultOptions, defaultElement);
 
 // clear input field
 const clearInput = (selector) => $(selector).val("");
@@ -162,6 +164,8 @@ $(".update-graph").on("click", function () {
   }
 
   if (didItChange("#colorPicker")) {
+    console.log(LightenDarkenColor($("#colorPicker").val(), 30));
+    console.log($("#colorPicker").val());
     defaultOptions["barColor"] = $("#colorPicker").val();
   }
 
@@ -203,6 +207,8 @@ $(".grid-title").hover(
     clearTimeout(setTimeoutConst);
   }
 );
+
+////////// stacked data /////////
 
 let stackedData = {
   appendElement: "stacked-grid",
@@ -289,6 +295,7 @@ const createStackedChart = function (data) {
         background: ${lowerBarColor};
         grid-column: ${colStart} / ${colEnd};
         grid-row: ${startingRow - item["data1"]} / ${maxValueCombined + 2};
+        border: 1px solid ${LightenDarkenColor(lowerBarColor, 50)};
         '>
       </div>
       <div class='dataLabel' 
@@ -303,6 +310,7 @@ const createStackedChart = function (data) {
         background: ${upperBarColor};
         grid-column: ${colStart} / ${colEnd};
         grid-row: ${start - item["data2"]} / ${start + 2};
+        border: 1px solid ${LightenDarkenColor(upperBarColor, 50)}
         '>
       </div>
       <div class='dataLabel' 
@@ -380,6 +388,9 @@ $("#update-stacked-graph").on("click", function () {
 
   if (didItChange("#lowerBarColor")) {
     options["lowerBarColor"] = $("#lowerBarColor").val();
+  }
+  if (didItChange("#upperBarColor")) {
+    options["upperBarColor"] = $("#upperBarColor").val();
   }
 
   if (didItChange("#stackedTitleColor")) {
