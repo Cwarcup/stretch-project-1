@@ -1,3 +1,21 @@
+const loader = () => {
+  // remove all grids on load
+  $("#grid-container").toggle();
+  $("#stacked-container").toggle();
+
+  // button to show all grids
+  $(".initStacked").on("click", function () {
+    $("#stacked-container").toggle();
+    $("#loader").hide();
+  });
+  $(".initSingle").on("click", function () {
+    $("#grid-container").toggle();
+    $("#loader").hide();
+  });
+};
+
+loader();
+
 let defaultData = [10, 35, 22, 55, 12];
 let defaultOptions = {
   title: "Test Bar Chart",
